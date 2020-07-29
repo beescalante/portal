@@ -1,0 +1,148 @@
+.responsive {
+  	width: 100%;
+  	height: auto;
+  	max-width: 300px;
+}
+.smart-forms .switch, .smart-forms .option, .smart-forms .field-label {
+    font-size: 16px !important;
+}
+.smart-forms .button {
+    border: 0;
+    height: 60px !important;
+    color: #243140;
+    line-height: 1;
+    font-size: 18px !important;
+    cursor: pointer;
+    padding: 0 18px;
+    text-align: center;
+    vertical-align: top;
+    background: #bdc3c7;
+        background-color: rgb(189, 195, 199);
+    display: inline-block;
+    -webkit-user-drag: none;
+    text-shadow: 0 1px rgba(255,255,255,0.2);
+}
+
+
+.success-msg {
+  color: #270;
+  background-color: #DFF2BF;
+  max-width: 800px;
+}
+.error-msg {
+  color: #D8000C;
+  background-color: #FFBABA;
+}
+.info-msg,
+.success-msg,
+.warning-msg,
+.error-msg {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px 3px 3px 3px;
+  font-family: "Roboto",Arial,Helvetica,sans-serif;
+  font-size: 16px;
+  text-align: center;
+}
+#card {
+  position: relative;
+  top: 110px;
+  width: 60%;
+  height: 400px;
+  display: block;
+  margin: auto;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+#upper-side {
+  padding: 2em;
+  background-color: #1abc9c;
+  display: block;
+  color: #fff;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+
+#status {
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1em;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+#lower-side {
+  padding: 2em 2em 5em 2em;
+  background: #fff;
+  display: block;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+#message {
+  margin-top: -.5em;
+  color: #757575;
+  letter-spacing: 1px;
+}
+
+#contBtn {
+  position: relative;
+  top: 1.5em;
+  text-decoration: none;
+  background: #1abc9c;
+  color: #fff;
+  margin: auto;
+  padding: .8em 3em;
+  -webkit-box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.21);
+  -moz-box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.21);
+  box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.21);
+  border-radius: 25px;
+  -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    transition: all .4s ease;
+}
+
+#contBtn:hover {
+  -webkit-box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.41);
+  -moz-box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.41);
+  box-shadow: 0px 15px 30px rgba(50, 50, 50, 0.41);
+  -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    transition: all .4s ease;
+}
+
+/* If in mobile screen with maximum width 479px. The iPhone screen resolution is 320x480 px (except iPhone4, 640x960) */    
+@media only screen and (max-width: 479px){
+    #card { width: 100%; }
+}
+
+.table-bordered {
+    border: 1px solid #ddd;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+table {
+    background-color: transparent;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border: 1px solid #ddd;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
