@@ -24,6 +24,11 @@ class EstudiantesTableTest extends TestCase
      */
     public $fixtures = [
         'app.Estudiantes',
+        'app.Nacionalidades',
+        'app.Sedes',
+        'app.Carreras',
+        'app.Solicitudes',
+        'app.Users',
     ];
 
     /**

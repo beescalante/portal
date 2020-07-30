@@ -147,7 +147,50 @@ class UsersController extends AppController
         return $this->redirect($this->Auth->logout());
     }
 
+
+    /**
+     * Inicio
+     *
+     */
     public function home()
+    {
+        
+       
+    }
+
+    /**
+     * Cambiar contraseña 
+     *
+     */
+    public function cambiarcontrasena()
+    {
+        $user =$this->Users->get($this->Auth->user('id')); 
+        if (!empty($this->request->getData())) { 
+            $user = $this->Users->patchEntity($user, [
+                'old_password'  => $this->request->getData(['old_password']),
+                'password'      => $this->request->getData(['password1']),
+                'password1'     => $this->request->getData(['password1']),
+                'password2'     => $this->request->getData(['password2'])
+                ],
+                ['validate' => 'password']
+            );
+            if ($this->Users->save($user)) { 
+                    
+                $this->Flash->success('Su contraseña ha sido modificada correctamente.'); 
+                    
+                return $this->redirect(['controller'=>'Users','action' => 'cambiarcontrasena']);
+            }else {    
+                $this->Flash->error('Su contraseña no pudo ser modificada. Por favor, intente más tarde.');   
+            } 
+        } 
+        $this->set('user',$user);
+    }
+
+    /**
+     * Perfil: Editar
+     *
+     */
+    public function miperfil()
     {
         
        

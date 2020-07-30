@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-07-2020 a las 00:03:46
+-- Tiempo de generación: 30-07-2020 a las 23:51:06
 -- Versión del servidor: 10.1.29-MariaDB
 -- Versión de PHP: 7.2.31
 
@@ -286,13 +286,20 @@ CREATE TABLE `estudiantes` (
   `emailu` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `telefono` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `sexo` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `nacionalidade_id` int(11) NOT NULL,
+  `nacionalidade_id` int(11) NOT NULL DEFAULT '26',
   `nacimiento` date NOT NULL,
   `sede_id` int(11) NOT NULL,
   `carrera_id` int(11) NOT NULL,
   `conape` tinyint(1) NOT NULL,
   `condicion` varchar(255) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `estudiantes`
+--
+
+INSERT INTO `estudiantes` (`id`, `cedula`, `nombre`, `apellido1`, `apellido2`, `emailp`, `emailu`, `telefono`, `sexo`, `nacionalidade_id`, `nacimiento`, `sede_id`, `carrera_id`, `conape`, `condicion`) VALUES
+(1, '578678576', 'hhhhh', 'hgfhgfhfhgfhgfhgfh', 'iuiuufhgfhgfhgfhgfhfghfg', 'bb@ggg.com', 'admin@admin.com', '565464566', 'Femenino', 1, '1990-05-17', 1, 1, 1, 'Veterano');
 
 -- --------------------------------------------------------
 
@@ -827,6 +834,146 @@ INSERT INTO `materias` (`id`, `codigo`, `nombre`, `bloque`, `creditos`, `carrera
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `nacionalidades`
+--
+
+CREATE TABLE `nacionalidades` (
+  `id` int(11) NOT NULL,
+  `nacionalidad` varchar(255) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `nacionalidades`
+--
+
+INSERT INTO `nacionalidades` (`id`, `nacionalidad`) VALUES
+(1, 'Afgano'),
+(2, 'Afgana'),
+(3, 'Alemán'),
+(4, 'Alemana'),
+(5, 'Árabe'),
+(6, 'Argentino'),
+(7, 'Argentina'),
+(8, 'Australiano'),
+(9, 'Australiana'),
+(10, 'Belga'),
+(11, 'Boliviano'),
+(12, 'Boliviana'),
+(13, 'Brasilero'),
+(14, 'Brasilera'),
+(15, 'Camboyano'),
+(16, 'Camboyana'),
+(17, 'Canadiense'),
+(18, 'Chileno'),
+(19, 'Chilena'),
+(20, 'Chino'),
+(21, 'China'),
+(22, 'Colombiano'),
+(23, 'Colombiana'),
+(24, 'Coreano'),
+(25, 'Coreana'),
+(26, 'Costarricense'),
+(27, 'Cubano'),
+(28, 'Cubana'),
+(29, 'Danés'),
+(30, 'Danesa'),
+(31, 'Ecuatoriano'),
+(32, 'Ecuatoriana'),
+(33, 'Egipcio'),
+(34, 'Egipcia'),
+(35, 'Salvadoreño'),
+(36, 'Salvadoreña'),
+(37, 'Español'),
+(38, 'Española'),
+(39, 'Estadounidense'),
+(40, 'Estonio'),
+(41, 'Estonia'),
+(42, 'Etiope'),
+(43, 'Filipino'),
+(44, 'Filipina'),
+(45, 'Finlandés'),
+(46, 'Finlandesa'),
+(47, 'Francés'),
+(48, 'Francesa'),
+(49, 'Galés'),
+(50, 'Galesa'),
+(51, 'Griego'),
+(52, 'Griega'),
+(53, 'Guatemalteco'),
+(54, 'Guatemalteca'),
+(55, 'Haitiano'),
+(56, 'Haitiana'),
+(57, 'Holandés'),
+(58, 'Holandesa'),
+(59, 'Hondureño'),
+(60, 'Hondureña'),
+(61, 'Indonés'),
+(62, 'Indonesa'),
+(63, 'Inglés'),
+(64, 'Inglesa'),
+(65, 'Irlandés'),
+(66, 'Irlandesa'),
+(67, 'Israelí'),
+(68, 'Italiano'),
+(69, 'Italiana'),
+(70, 'Japonés'),
+(71, 'Japonesa'),
+(72, 'Jordano'),
+(73, 'Jordana'),
+(74, 'Laosiano'),
+(75, 'Laosiana'),
+(76, 'Letón'),
+(77, 'Letona'),
+(78, 'Letonés'),
+(79, 'Letonesa'),
+(80, 'Malayo'),
+(81, 'Malaya'),
+(82, 'Marroquí'),
+(83, 'Mexicano'),
+(84, 'Mexicana'),
+(85, 'Nicaragüense'),
+(86, 'Noruego'),
+(87, 'Noruega'),
+(88, 'Neocelandés'),
+(89, 'Neocelandesa'),
+(90, 'Panameño'),
+(91, 'Panameña'),
+(92, 'Paraguayo'),
+(93, 'Paraguaya'),
+(94, 'Peruano'),
+(95, 'Peruana'),
+(96, 'Polaco'),
+(97, 'Polaca'),
+(98, 'Portugués'),
+(99, 'Portuguesa'),
+(100, 'Puertorriqueño'),
+(101, 'Dominicano'),
+(102, 'Dominicana'),
+(103, 'Rumano'),
+(104, 'Rumana'),
+(105, 'Ruso'),
+(106, 'Rusa'),
+(107, 'Sueco'),
+(108, 'Sueca'),
+(109, 'Suizo'),
+(110, 'Suiza'),
+(111, 'Tailandés'),
+(112, 'Tailandesa'),
+(113, 'Taiwanes'),
+(114, 'Taiwanesa'),
+(115, 'Turco'),
+(116, 'Turca'),
+(117, 'Ucraniano'),
+(118, 'Ucraniana'),
+(119, 'Uruguayo'),
+(120, 'Uruguaya'),
+(121, 'Venezolano'),
+(122, 'Venezolana'),
+(123, 'Vietnamita');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `periodos`
 --
 
@@ -948,7 +1095,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `password`, `email`, `nombre`, `apellido`, `role_id`, `status`, `creator`, `created`, `modifier`, `modified`, `passkey`, `timeout`, `photo`, `photo_dir`, `firstime`, `sede_id`, `estudiante_id`, `docente_id`) VALUES
-(1, '$2y$10$lAwxuSkqxxMQXYXRPTL0a.QPGSLnJXbRB3DxhYMdfF2bos5PK2XBG', 'admin@admin.com', 'Administrador', 'de Todo', 1, 1, 'admin', '2019-04-06', 'admin', '2019-04-07', '', '2019-06-04 20:59:01', 'user.png', 'default', 1, 7, NULL, NULL);
+(1, '$2y$10$lAwxuSkqxxMQXYXRPTL0a.QPGSLnJXbRB3DxhYMdfF2bos5PK2XBG', 'admin@admin.com', 'Administrador', 'de Todo', 1, 1, 'admin', '2019-04-06', 'admin', '2019-04-07', '', '2020-07-30 17:52:07', 'user.png', 'default', 1, 7, 1, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -988,6 +1135,12 @@ ALTER TABLE `estudiantes`
 -- Indices de la tabla `materias`
 --
 ALTER TABLE `materias`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `nacionalidades`
+--
+ALTER TABLE `nacionalidades`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1052,7 +1205,7 @@ ALTER TABLE `cobros`
 -- AUTO_INCREMENT de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `materias`

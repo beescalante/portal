@@ -64,8 +64,9 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->setExtensions(['pdf']);
     $routes->connect('/', ['controller' => 'Users', 'action' => 'login']);
-    $routes->connect('inicio/', ['controller' => 'Users', 'action' => 'home']);
-    $routes->connect('cambiar-contrasena/*', ['controller' => 'Users', 'action' => 'changeUserPassword']);
+    $routes->connect('inicio', ['controller' => 'Users', 'action' => 'home']);
+    $routes->connect('cambiar-contrasena', ['controller' => 'Users', 'action' => 'cambiarcontrasena']);
+    $routes->connect('mi-perfil', ['controller' => 'Users', 'action' => 'miperfil']);
 
     /**
      * Connect catchall routes for all controllers.

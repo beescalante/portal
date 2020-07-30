@@ -63,7 +63,7 @@ class AppController extends Controller
                 'authError'=>'Desconectado',
                 'loginRedirect' => [
                     'controller' =>'Users',
-                    'action' => 'inicio'
+                    'action' => 'home'
                 ],
                 'logoutRedirect' =>[
                     'controller' =>'Users',
@@ -101,7 +101,15 @@ class AppController extends Controller
             $this->loadModel('Roles');
             $role=$this->Roles->get($this->Auth->user('role_id'));
             $role_name=$role->nombre;
-            $this->set(compact('role_name'));
+
+            //buscar datos personales
+            //si es estudiante
+            if($this->Auth->user('role_id')==1){
+                $this->loadModel('Estudiantes');
+                $estudiante=$this->Estudiantes->get($this->Auth->user('estudiante_id'),['contain'=>['Sedes','Carreras','Nacionalidades']]);
+            }
+
+            $this->set(compact('role_name','estudiante'));
         }
         
 
