@@ -83,10 +83,10 @@
                                 <span class="font-weight-bold mr-2">Sexo:</span>
                                 <span class="text-muted"><?php echo $estudiante->sexo; ?></span>
                             </div>
-                             <div class="d-flex align-items-center justify-content-between">
+                            <!-- <div class="d-flex align-items-center justify-content-between">
                                 <span class="font-weight-bold mr-2">Fecha de Nacimiento:</span>
                                 <span class="text-muted"><?php echo $estudiante->nacimiento; ?></span>
-                            </div>
+                            </div> -->
                              <div class="d-flex align-items-center justify-content-between">
                                 <span class="font-weight-bold mr-2">Carrera:</span>
                                 <span class="text-muted"><?php echo $estudiante->carrera->carrera; ?></span>

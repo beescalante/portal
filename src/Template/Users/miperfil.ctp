@@ -83,10 +83,10 @@
                                 <span class="font-weight-bold mr-2">Sexo:</span>
                                 <span class="text-muted"><?php echo $estudiante->sexo; ?></span>
                             </div>
-                             <div class="d-flex align-items-center justify-content-between">
+                            <!-- <div class="d-flex align-items-center justify-content-between">
                                 <span class="font-weight-bold mr-2">Fecha de Nacimiento:</span>
                                 <span class="text-muted"><?php echo $estudiante->nacimiento; ?></span>
-                            </div>
+                            </div> -->
                              <div class="d-flex align-items-center justify-content-between">
                                 <span class="font-weight-bold mr-2">Carrera:</span>
                                 <span class="text-muted"><?php echo $estudiante->carrera->carrera; ?></span>
@@ -184,7 +184,7 @@
                                     </span>                        
                                 </div>
                                 <div class="alert-text font-weight-bold">
-                                    Escriba cuidadodasamente todos sus datos.
+                                    Escriba cuidadodasamente todos sus datos. Algunos datos no podrá editarlos, para cambiarlos deberá solicitarlo directamente en la <?php echo $estudiante->sede->nombre; ?> o a través del formulario de soporte.
                                 </div>
                                 <div class="alert-close">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -193,21 +193,39 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-xl-3 col-lg-3 col-form-label text-alert">Contraseña actual</label>
+                                <label class="col-xl-3 col-lg-3 col-form-label text-alert">Nombre</label>
                                 <div class="col-lg-9 col-xl-6">
-                                    <?php echo $this->Form->control('old_password',['label'=>false,'class'=>'form-control form-control-lg form-control-solid mb-2','placeholder'=>'Contraseña Actual (6-12 caracteres)','type'=>'password','autocomplete'=>'new-password','required'=>'required','id'=>'password1','maxlength'=>'12']); ?>
+                                    <?php echo $this->Form->control('nombre',['label'=>false,'class'=>'form-control form-control-lg form-control-solid mb-2','placeholder'=>'Nombre completo','type'=>'text','autocomplete'=>'new-password','required'=>'required']); ?>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-xl-3 col-lg-3 col-form-label text-alert">Nueva contraseña</label>
+                                <label class="col-xl-3 col-lg-3 col-form-label text-alert">Primer Apellido</label>
                                 <div class="col-lg-9 col-xl-6">
-                                    <?php echo $this->Form->control('password1',['label'=>false,'class'=>'form-control form-control-lg form-control-solid','placeholder'=>'Contraseña Nueva (6-12 caracteres)','type'=>'password','autocomplete'=>'new-password','required'=>'required','id'=>'password1','maxlength'=>'12']); ?>
+                                    <?php echo $this->Form->control('apellido1',['label'=>false,'class'=>'form-control form-control-lg form-control-solid mb-2','placeholder'=>'Primer Apellido','type'=>'text','autocomplete'=>'new-password','required'=>'required']); ?>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-xl-3 col-lg-3 col-form-label text-alert">Confirmar nueva contraseña</label>
+                                <label class="col-xl-3 col-lg-3 col-form-label text-alert">Segundo Apellido</label>
                                 <div class="col-lg-9 col-xl-6">
-                                    <?php echo $this->Form->control('password2',['label'=>false,'class'=>'form-control form-control-lg form-control-solid','placeholder'=>'Contraseña Nueva (6-12 caracteres)','type'=>'password','autocomplete'=>'new-password','required'=>'required','maxlength'=>'12']); ?>
+                                    <?php echo $this->Form->control('apellido2',['label'=>false,'class'=>'form-control form-control-lg form-control-solid mb-2','placeholder'=>'Segundo Apellido','type'=>'text','autocomplete'=>'new-password']); ?>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label text-alert">Correo Personal</label>
+                                <div class="col-lg-9 col-xl-6">
+                                    <?php echo $this->Form->control('emailp',['label'=>false,'class'=>'form-control form-control-lg form-control-solid mb-2','placeholder'=>'Ejem: micorreo@correo.com','type'=>'email','autocomplete'=>'new-password','required'=>'required']); ?>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label text-alert">Teléfono</label>
+                                <div class="col-lg-9 col-xl-6">
+                                    <?php echo $this->Form->control('telefono',['label'=>false,'class'=>'form-control form-control-lg form-control-solid','placeholder'=>'Teléfono (8 caracteres)','type'=>'text','autocomplete'=>'new-password','required'=>'required']); ?>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label text-alert">Sexo</label>
+                                <div class="col-lg-9 col-xl-6">
+                                    <?php echo $this->Form->control('sexo',['label'=>false,'class'=>'form-control form-control-lg form-control-solid','empty'=>'Seleccione','required'=>'required','options'=>['Sin Especificar'=>'Sin Especificar','Femenino'=>'Femenino','Masculino'=>'Masculino']]); ?>
                                 </div>
                             </div>
                         </div>

@@ -8,34 +8,26 @@
                 <a href="#" class="mb-15 text-center">
                     <?php echo $this->Html->image('logo_portal.png', ['alt' => 'Logo', 'class'=>'max-h-75px']); ?>
                 </a>
-
-                <!--begin::Signin-->
+                <!--begin::Forgot-->
                 <div class="login-form login-signin">
                     <div class="text-center mb-10 mb-lg-20">
-                        <h2 class="font-weight-bold">¡Ingrese ahora!</h2>
-                        <p class="text-muted font-weight-bold">Escriba su correo institucional y su contraseña</p>
+                        <h3 class="">¿Olvidó su contraseña?</h3>
+                        <p class="text-muted font-weight-bold">Ingrese su dirección de correo electrónico institucional. Recibirá un mensaje de correo con el enlace o link para poder recuperar su contraseña.</p>
                     </div>
                     <?= $this->Flash->render() ?>
-                    <?= $this->Flash->render('auth') ?>
                     <!--begin::Form-->
-                    <?=$this->Form->create(null,['class'=>'form fv-plugins-bootstrap fv-plugins-framework']) ?>
-                        <div class="form-group py-3 m-0 fv-plugins-icon-container">
-                            <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="Email" placeholder="Correo Institucional" name="email" autocomplete="off">
+                    <?=$this->Form->create(null,['class'=>'form']) ?>
+                        <div class="form-group py-3 border-bottom mb-10">
+                            <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="email" name="email" autocomplete="off" placeholder="Correo Institucional" />
                         </div>
-                        <div class="form-group py-3 border-top m-0 fv-plugins-icon-container">
-                            <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="Password" placeholder="Contraseña" name="password" autocomplete="off">
-                        </div>
-                        <div class="form-group d-flex flex-wrap justify-content-between align-items-center mt-3">
-                            <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'pedircontrasena']) ?>" id="kt_login_forgot" class="text-muted text-hover-primary">Olvidé mi contraseña</a>
-                        </div>
-
-                        <div class="form-group d-flex flex-wrap justify-content-between align-items-center mt-2">
-                            <button id="kt_login_signin_submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3">Acceder</button>
+                        <div class="form-group d-flex flex-wrap flex-center">
+                            <button id="kt_login_forgot_submit" class="btn btn-primary  font-weight-bold px-9 py-4 my-3 mx-2">Enviar</button>
+                            <button id="kt_login_forgot_cancel" class="btn btn-light-primary  font-weight-bold px-9 py-4 my-3 mx-2">Cancelar</button>
                         </div>
                     <?= $this->Form->end() ?>
                     <!--end::Form-->
                 </div>
-                <!--end::Signin-->
+                <!--end::Forgot-->
             </div>
             <!--end::Aside body-->
 

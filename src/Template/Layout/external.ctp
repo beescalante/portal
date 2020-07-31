@@ -1,16 +1,16 @@
 <?php
 /**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 $cakeDescription = 'Portal Académico USL';
@@ -29,28 +29,15 @@ $cakeDescription = 'Portal Académico USL';
     <?= $this->Html->meta('icon') ?>
     <?= $this->fetch('meta') ?>
 
-    <?= $this->Html->css(['../plugins/global/plugins.bundle','../plugins/prismjs/prismjs.bundle','style.bundle','estilo']) ?>
+    <?= $this->Html->css(['login-2','../plugins/global/plugins.bundle','../plugins/prismjs/prismjs.bundle','style.bundle']) ?>
     <?= $this->fetch('css') ?>
 
     
 </head>
-<body  id="kt_body"  class="header-fixed header-mobile-fixed">
-    <?=$this->element('menumobile')?>
-    <!-- begin::Content -->
+<body  id="kt_body"  class="header-fixed header-mobile-fixed subheader-enabled page-loading"  >
     <div class="d-flex flex-column flex-root">
-        <div class="d-flex flex-row flex-column-fluid page">
-            <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
-                <?=$this->element('menu')?>
-                <div id="kt_content" class="content  d-flex flex-column flex-column-fluid">
-                    <?= $this->fetch('content') ?>
-                </div>
-                <?=$this->element('footer')?>
-            </div>
-        </div>
+        <?= $this->fetch('content') ?>
     </div>
-    <!-- end::Content -->
-    <?=$this->element('userpanel')?>
-    <!-- begin::Scripts -->
     <script>
             var KTAppSettings = {
             "breakpoints": {
@@ -113,7 +100,6 @@ $cakeDescription = 'Portal Académico USL';
     </script>
     <?= $this->Html->script(['../plugins/global/plugins.bundle','../plugins/prismjs/prismjs.bundle','scripts.bundle','login-general'])?>
     <?= $this->fetch('script') ?>
-    <!-- end::Scripts -->
 </body>
     
 </html>

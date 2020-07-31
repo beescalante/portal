@@ -67,6 +67,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('inicio', ['controller' => 'Users', 'action' => 'home']);
     $routes->connect('cambiar-contrasena', ['controller' => 'Users', 'action' => 'cambiarcontrasena']);
     $routes->connect('mi-perfil', ['controller' => 'Users', 'action' => 'miperfil']);
+    $routes->connect('solicitar-contrasena', ['controller' => 'Users', 'action' => 'pedircontrasena']);
+    $routes->connect('reestablecer-contrasena', ['controller' => 'Users', 'action' => 'recuperarcontrasena']);
 
     /**
      * Connect catchall routes for all controllers.

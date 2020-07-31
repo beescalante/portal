@@ -218,6 +218,17 @@ return [
             'tls' => null,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
+        'usl' => [
+            'className'=> 'Smtp',
+            'host' => 'mail.usantalucia.ac.cr',
+            'port' => 26,
+            'timeout' => 120,
+            'username' => 'no-reply@usantalucia.ac.cr',
+            'password' => 'kKWfE?#f!6Np"',
+            'client' => null,
+            'tls' => true,
+            'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+        ],
     ],
 
     /**
@@ -235,6 +246,10 @@ return [
             'from' => 'you@localhost',
             //'charset' => 'utf-8',
             //'headerCharset' => 'utf-8',
+        ],
+        'usl' => [
+            'transport' => 'usl',
+            'from' => ['no-reply@usantalucia.ac.cr' => 'Universidad Santa Lucía - Notificaciones']
         ],
     ],
 
@@ -390,5 +405,6 @@ return [
      */
     'Session' => [
         'defaults' => 'php',
+        'timeout'=>1*60
     ],
 ];

@@ -15,39 +15,18 @@ class PagesMailer extends Mailer
      */
     public static $name = 'Pages';
 
-    public function docentes($correo,$nombre,$cedula,$telefono,$sede,$correoprofe)
+    public function contrasena($email,$nombre,$apellido,$url)
     {
-    	$this->setTo($correo)
-    	->setProfile('usl')
-    	->setEmailFormat('html')
-    	->setViewVars(['correo'=>$correo,'nombre'=>$nombre,'cedula'=>$cedula,'telefono'=>$telefono,'sede'=>$sede,'correoprofe'=>$correoprofe])
-    	->setSubject(sprintf('Notificación: Crear Cuenta de Correo Docente'))
-        ->viewBuilder()
-            ->setTemplate('docentes')
-            ->setLayout('pages');
-    }
-    public function estudiantes($correo,$nombre,$apellido,$cedula,$sede,$carrera,$email,$clave)
-    {
-        $this->setTo($correo)
+        $this->setTo($email)
         ->setProfile('usl')
         ->setEmailFormat('html')
-        ->setViewVars(['correo'=>$correo,'nombre'=>$nombre,'apellido'=>$apellido,'cedula'=>$cedula,'sede'=>$sede,'carrera'=>$carrera,'email'=>$email,'clave'=>$clave])
-        ->setSubject(sprintf('Notificación: Correo Institucional'))
+        ->setViewVars(['email'=>$email,'nombre'=>$nombre,'apellido'=>$apellido,'url'=>$url])
+        ->setSubject(sprintf('Reestablecer Contraseña'))
         ->viewBuilder()
-            ->setTemplate('estudiantes')
+            ->setTemplate('contrasena')
             ->setLayout('pages');
     }
-    public function datos($correo)
-    {
-        $this->setTo($correo)
-        ->setProfile('usl')
-        ->setEmailFormat('html')
-        ->setViewVars(['correo'=>$correo])
-        ->setSubject(sprintf('Notificación: Verificación de Datos'))
-        ->viewBuilder()
-            ->setTemplate('datos')
-            ->setLayout('pages');
-    }
+   
 
     
 }
