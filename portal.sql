@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-07-2020 a las 23:51:06
+-- Tiempo de generación: 31-07-2020 a las 23:59:00
 -- Versión del servidor: 10.1.29-MariaDB
 -- Versión de PHP: 7.2.31
 
@@ -299,7 +299,7 @@ CREATE TABLE `estudiantes` (
 --
 
 INSERT INTO `estudiantes` (`id`, `cedula`, `nombre`, `apellido1`, `apellido2`, `emailp`, `emailu`, `telefono`, `sexo`, `nacionalidade_id`, `nacimiento`, `sede_id`, `carrera_id`, `conape`, `condicion`) VALUES
-(1, '578678576', 'hhhhh', 'hgfhgfhfhgfhgfhgfh', 'iuiuufhgfhgfhgfhgfhfghfg', 'bb@ggg.com', 'admin@admin.com', '565464566', 'Femenino', 1, '1990-05-17', 1, 1, 1, 'Veterano');
+(1, '578678576', 'Beatriz', 'Escalante', 'iuiuufhgfhgfhgfhgfhfghfg', 'bb@ggg.com', 'admin@admin.com', '565464566', 'Femenino', 1, '1990-05-17', 1, 1, 1, 'Veterano');
 
 -- --------------------------------------------------------
 
@@ -1095,7 +1095,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `password`, `email`, `nombre`, `apellido`, `role_id`, `status`, `creator`, `created`, `modifier`, `modified`, `passkey`, `timeout`, `photo`, `photo_dir`, `firstime`, `sede_id`, `estudiante_id`, `docente_id`) VALUES
-(1, '$2y$10$lAwxuSkqxxMQXYXRPTL0a.QPGSLnJXbRB3DxhYMdfF2bos5PK2XBG', 'admin@admin.com', 'Administrador', 'de Todo', 1, 1, 'admin', '2019-04-06', 'admin', '2019-04-07', '', '2020-07-30 17:52:07', 'user.png', 'default', 1, 7, 1, NULL);
+(1, '$2y$10$WTTICQbtNQGgottAilds1ukEBnqmM95apWVuZWL6zDbbBLPtmlNmi', 'bescalante@usl.ac.cr', 'Administrador', 'de Todo', 1, 1, 'admin', '2019-04-06', 'admin', '2019-04-07', '5f2493d0d1a9e', '2020-08-01 21:57:36', 'user.png', 'default', 1, 7, 1, NULL);
 
 --
 -- Índices para tablas volcadas
