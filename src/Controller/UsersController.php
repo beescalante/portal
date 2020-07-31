@@ -178,12 +178,18 @@ class UsersController extends AppController
                     
                 $this->Flash->success('Su contraseña ha sido modificada correctamente.'); 
                     
-                return $this->redirect(['controller'=>'Users','action' => 'cambiarcontrasena']);
+                $this->logout();
             }else {    
                 $this->Flash->error('Su contraseña no pudo ser modificada. Por favor, intente más tarde.');   
             } 
-        } 
+        }
         $this->set('user',$user);
+
+        if($this->Auth->user('role_id')==1){
+            $this->loadModel('Estudiantes');
+            $estudiante=$this->Estudiantes->get($this->Auth->user('estudiante_id'),['contain'=>['Sedes','Carreras','Nacionalidades']]);
+        }
+        $this->set(compact('estudiante'));
     }
 
     /**
@@ -192,7 +198,12 @@ class UsersController extends AppController
      */
     public function miperfil()
     {
-        
+        if($this->Auth->user('role_id')==1){
+            $this->loadModel('Estudiantes');
+            $estudiante=$this->Estudiantes->get($this->Auth->user('estudiante_id'),['contain'=>['Sedes','Carreras','Nacionalidades']]);
+            
+        }
+        $this->set(compact('estudiante'));
        
     }
 }

@@ -29,7 +29,7 @@ $cakeDescription = 'Portal Académico USL';
     <?= $this->Html->meta('icon') ?>
     <?= $this->fetch('meta') ?>
 
-    <?= $this->Html->css(['../plugins/global/plugins.bundle','../plugins/prismjs/prismjs.bundle','style.bundle']) ?>
+    <?= $this->Html->css(['../plugins/global/plugins.bundle','../plugins/prismjs/prismjs.bundle','style.bundle','estilo']) ?>
     <?= $this->fetch('css') ?>
 
     

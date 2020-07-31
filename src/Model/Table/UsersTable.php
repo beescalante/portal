@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * Users Model
@@ -159,7 +160,7 @@ class UsersTable extends Table
     public function findAuth(\Cake\ORM\Query $query, array $options)
     {
         $query
-            ->select(['id','role_id','status','email','nombre','apellido','photo','photo_dir','firstime','sede_id','estudiante_id','docente_id'])
+            ->select(['id','password','role_id','status','email','nombre','apellido','photo','photo_dir','firstime','sede_id','estudiante_id','docente_id'])
             ->where(['Users.status'=> 1]);
         return $query;
     }

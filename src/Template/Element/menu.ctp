@@ -19,7 +19,7 @@
                     <div class="btn btn-icon btn-hover-transparent-white w-auto d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
                         <div class="d-flex flex-column text-right pr-3">
                             <span class="text-white opacity-50 font-weight-bold font-size-sm d-none d-md-inline"><?php echo $current_user['nombre']; ?></span>
-                            <span class="text-white font-weight-bolder font-size-sm d-none d-md-inline"><?php echo $role_name; ?></span>
+                            <span class="text-white font-weight-bolder font-size-sm d-none d-md-inline"><?php echo $current_user['email']; ?></span>
                         </div>
                         <span class="symbol symbol-35">
                             <span class="symbol-label font-size-h5 font-weight-bold text-white bg-white-o-30"><?php echo substr($current_user['nombre'], 0, 1); ?></span>
@@ -51,7 +51,7 @@
                             </a>
                             <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
                                 <ul class="menu-subnav">
-                                    <li class="menu-item  menu-item-active "  aria-haspopup="true">
+                                    <li class="menu-item"  aria-haspopup="true">
                                         <a  href="#" class="menu-link ">
                                             <span class="menu-text">Enfermería</span>
                                             <span class="menu-desc"></span>
@@ -75,14 +75,14 @@
                             </a>
                             <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
                                 <ul class="menu-subnav">
-                                    <li class="menu-item  menu-item-active "  aria-haspopup="true">
-                                        <a  href="#" class="menu-link ">
+                                    <li class="menu-item"  aria-haspopup="true">
+                                        <a  href="https://outlook.office365.com" class="menu-link"  target="_blank">
                                             <span class="menu-text">Outlook</span>
                                             <span class="menu-desc"></span>
                                         </a>
                                     </li>
-                                    <li class="menu-item  menu-item-active "  aria-haspopup="true">
-                                        <a  href="#" class="menu-link ">
+                                    <li class="menu-item"  aria-haspopup="true">
+                                        <a href="https://teams.microsoft.com/" class="menu-link " target="_blank">
                                             <span class="menu-text">Teams</span>
                                             <span class="menu-desc"></span>
                                         </a>
@@ -98,20 +98,20 @@
                             </a>
                             <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
                                 <ul class="menu-subnav">
-                                    <li class="menu-item  menu-item-active "  aria-haspopup="true">
-                                        <a  href="#" class="menu-link ">
+                                    <li class="menu-item"  aria-haspopup="true">
+                                        <a  href="<?= $this->Url->build(['controller' => 'Solicitudes', 'action' => 'add']) ?>" class="menu-link ">
                                             <span class="menu-text">Nueva Solicitud</span>
                                             <span class="menu-desc"></span>
                                         </a>
                                     </li>
-                                    <li class="menu-item  menu-item-active "  aria-haspopup="true">
-                                        <a  href="#" class="menu-link ">
+                                    <li class="menu-item"  aria-haspopup="true">
+                                        <a  href="<?= $this->Url->build(['controller' => 'Solicitudes', 'action' => 'index']) ?>" class="menu-link">
                                             <span class="menu-text">Ver Solicitudes</span>
                                             <span class="menu-desc"></span>
                                         </a>
                                     </li>
-                                    <li class="menu-item  menu-item-active "  aria-haspopup="true">
-                                        <a  href="#" class="menu-link ">
+                                    <li class="menu-item"  aria-haspopup="true">
+                                        <a  href="<?= $this->Url->build(['controller' => 'Cobros', 'action' => 'index']) ?>" class="menu-link ">
                                             <span class="menu-text">Pagos de Matrícula</span>
                                             <span class="menu-desc"></span>
                                         </a>
@@ -127,14 +127,14 @@
                             </a>
                             <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
                                 <ul class="menu-subnav">
-                                    <li class="menu-item  menu-item-active "  aria-haspopup="true">
-                                        <a  href="#" class="menu-link ">
+                                    <li class="menu-item"  aria-haspopup="true">
+                                        <a  href="#" class="menu-link">
                                             <span class="menu-text">Historial Académico</span>
                                             <span class="menu-desc"></span>
                                         </a>
                                     </li>
-                                    <li class="menu-item  menu-item-active "  aria-haspopup="true">
-                                        <a  href="#" class="menu-link ">
+                                    <li class="menu-item"  aria-haspopup="true">
+                                        <a  href="#" class="menu-link">
                                             <span class="menu-text">Plan de Estudios</span>
                                             <span class="menu-desc"></span>
                                         </a>

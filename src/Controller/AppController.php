@@ -79,6 +79,9 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
     }
+    public $helpers = [
+        'Form' => ['templates' => 'form-templates']
+    ];
 
     public function beforeFilter(Event $event)
     {
@@ -95,23 +98,6 @@ class AppController extends Controller
     }
     
     public function beforeRender(Event $event){
-        //nombre de usuario
-        if($this->Auth->user('role_id')){
-
-            $this->loadModel('Roles');
-            $role=$this->Roles->get($this->Auth->user('role_id'));
-            $role_name=$role->nombre;
-
-            //buscar datos personales
-            //si es estudiante
-            if($this->Auth->user('role_id')==1){
-                $this->loadModel('Estudiantes');
-                $estudiante=$this->Estudiantes->get($this->Auth->user('estudiante_id'),['contain'=>['Sedes','Carreras','Nacionalidades']]);
-            }
-
-            $this->set(compact('role_name','estudiante'));
-        }
-        
 
     }
 }
