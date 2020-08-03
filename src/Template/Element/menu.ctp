@@ -52,7 +52,7 @@
                             <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
                                 <ul class="menu-subnav">
                                     <li class="menu-item"  aria-haspopup="true">
-                                        <a  href="#" class="menu-link ">
+                                        <a  href="https://accessmedicina.mhmedical.com/" class="menu-link" target="_blank">
                                             <span class="menu-text">Enfermería</span>
                                             <span class="menu-desc"></span>
                                         </a>

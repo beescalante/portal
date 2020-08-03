@@ -26,6 +26,18 @@ class PagesMailer extends Mailer
             ->setTemplate('contrasena')
             ->setLayout('pages');
     }
+
+    public function solicitud($correos,$id,$cedula,$periodo,$carrera,$sede,$materias)
+    {
+        $this->setTo($correos)
+        ->setProfile('usl')
+        ->setEmailFormat('html')
+        ->setViewVars(['id'=>$id,'cedula'=>$cedula,'periodo'=>$periodo,'carrera'=>$carrera,'sede'=>$sede,'materias'=>$materias])
+        ->setSubject(sprintf('Solicitud de Matrícula #'.$id.': Estudiante Regular/Activo'))
+        ->viewBuilder()
+            ->setTemplate('solicitud')
+            ->setLayout('pages');
+    }
    
 
     

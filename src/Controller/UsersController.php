@@ -19,106 +19,22 @@ class UsersController extends AppController
     public function beforeFilter(\Cake\Event\Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['pedircontrasena','recuperarcontrasena','login']);
+        $this->Auth->allow(['pedircontrasena','recuperarcontrasena','login','logout']);
     }
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
-    public function index()
-    {
-        $this->paginate = [
-            'contain' => ['Roles', 'Sedes'],
-        ];
-        $users = $this->paginate($this->Users);
-
-        $this->set(compact('users'));
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $user = $this->Users->get($id, [
-            'contain' => ['Roles', 'Sedes'],
-        ]);
-
-        $this->set('user', $user);
-    }
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $user = $this->Users->newEntity();
-        if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+    /*PERMISOLOGIA DE USUARIOS*/
+    public function isAuthorized($user){
+        //estudiante rol=3
+        if(isset($user['role_id']) and $user['role_id'] === 3)
+        {
+            if(in_array($this->request->action, ['login','logout','home','cambiarcontrasena','miperfil','pedircontrasena','recuperarcontrasena']))
+            {
+                return true;
+            }else{
+                $this->Flash->error(__('Disculpe, usted no está autorizado para realizar esta acción.'));
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $roles = $this->Users->Roles->find('list', ['limit' => 200]);
-        $sedes = $this->Users->Sedes->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'roles', 'sedes'));
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $user = $this->Users->get($id, [
-            'contain' => [],
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
-        }
-        $roles = $this->Users->Roles->find('list', ['limit' => 200]);
-        $sedes = $this->Users->Sedes->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'roles', 'sedes'));
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $user = $this->Users->get($id);
-        if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
-        } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
+        return parent::isAuthorized($user);
     }
 
     /**
@@ -195,7 +111,7 @@ class UsersController extends AppController
         }
         $this->set('user',$user);
 
-        if($this->Auth->user('role_id')==1){
+        if($this->Auth->user('role_id')==3){
             $this->loadModel('Estudiantes');
             $estudiante=$this->Estudiantes->get($this->Auth->user('estudiante_id'),['contain'=>['Sedes','Carreras','Nacionalidades']]);
         }
@@ -208,7 +124,7 @@ class UsersController extends AppController
      */
     public function miperfil()
     {
-        if($this->Auth->user('role_id')==1){
+        if($this->Auth->user('role_id')==3){
             $this->loadModel('Estudiantes');
             $estudiante=$this->Estudiantes->get($this->Auth->user('estudiante_id'),['contain'=>['Sedes','Carreras','Nacionalidades']]);
             
@@ -285,13 +201,14 @@ class UsersController extends AppController
                     ['validate' => 'password']);
 
                     if ($this->Users->save($user)) {
-                        $this->Flash->success(__($user->nombre.', su contraseña ha sido reestablecida.'));
+                        $this->Flash->success(__($user->nombre.', su contraseña ha sido recuperada.'));
+                        return $this->redirect(['action' => 'login']);
                     } else {
-                        $this->Flash->error(__($user->nombre.', su contraseña no pudo ser reestablecida. Por favor, intente nuevamente.'));
+                        $this->Flash->error(__($user->nombre.', su contraseña no pudo ser recuperada. Por favor, revise sus datos e intente nuevamente.'));
                     }
                 }
             } else {
-                $this->Flash->error('Enlace inválido o expirado. Por favor, revise su correo o intente reestablecer nuevamente.');
+                $this->Flash->error('Enlace inválido o expirado. Por favor, revise su correo o intente solicitar su contraseña nuevamente.');
                 $this->redirect(['action' => 'pedircontrasena']);
             }
             unset($user->password);

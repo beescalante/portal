@@ -35,7 +35,7 @@
 <!-- end::Subheader -->
 <div class="d-flex flex-column-fluid">
     <!--begin::Container-->
-    <div class=" container ">
+    <div class="container">
         <!--begin::Profile Change Password-->
         <div class="d-flex flex-row">
             <!--begin::Aside-->
@@ -68,6 +68,10 @@
                         <!--begin::Contact-->
                         <div class="py-9">
                             <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="font-weight-bold mr-2">Cédula:</span>
+                                <a class="text-muted"><?php echo $estudiante->cedula; ?></a>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between mb-2">
                                 <span class="font-weight-bold mr-2">Correo Personal:</span>
                                 <a class="text-muted"><?php echo $estudiante->emailp; ?></a>
                             </div>
@@ -89,7 +93,7 @@
                             </div> -->
                              <div class="d-flex align-items-center justify-content-between">
                                 <span class="font-weight-bold mr-2">Carrera:</span>
-                                <span class="text-muted"><?php echo $estudiante->carrera->carrera; ?></span>
+                                <span class="text-muted"><?php echo $estudiante->carrera->nombre; ?></span>
                             </div>
                         </div>
                         <!--end::Contact-->
@@ -160,7 +164,7 @@
                         <div class="card-toolbar">
                         <?= $this->Form->create($estudiante) ?>
                             <?= $this->Form->button(('Guardar'),['class'=>'btn btn-success mr-2']) ?>
-                            <?= $this->Html->link(('Cancelar'),['action' => 'index'],['class' => 'btn btn-secondary']) ?>
+                            <?= $this->Html->link(('Cancelar'),['controller'=>'Users','action' => 'home'],['class' => 'btn btn-secondary']) ?>
                         </div>
                     </div>
                     <!--end::Header-->

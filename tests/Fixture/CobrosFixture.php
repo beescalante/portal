@@ -55,7 +55,7 @@ class CobrosFixture extends TestFixture
                 'status' => 1,
                 'sede_id' => 1,
                 'referencia' => 'Lorem ipsum dolor sit amet',
-                'created' => '2020-07-31',
+                'created' => '2020-08-01',
                 'usuario' => 'Lorem ipsum dolor sit amet',
             ],
         ];

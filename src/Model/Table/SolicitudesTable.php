@@ -107,10 +107,9 @@ class SolicitudesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['user_id'], 'Users'));
-        $rules->add($rules->existsIn(['estudiante_id'], 'Estudiantes'));
         $rules->add($rules->existsIn(['carrera_id'], 'Carreras'));
         $rules->add($rules->existsIn(['sede_id'], 'Sedes'));
+        $rules->add($rules->isUnique(['user_id','estudiante_id','cedula','carrera_id','sede_id','periodo'],'Esta cuenta ya se encuentra registrada.'));
 
         return $rules;
     }

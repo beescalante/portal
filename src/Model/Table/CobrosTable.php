@@ -44,6 +44,14 @@ class CobrosTable extends Table
             'foreignKey' => 'sede_id',
             'joinType' => 'INNER',
         ]);
+
+        /*Cargar fotos*/
+        $this->addBehavior('Proffer.Proffer', [
+            'img' => [    
+                'root' => WWW_ROOT . 'files',
+                'dir' => 'img_dir',
+            ]
+        ]);
     }
 
     /**
@@ -104,6 +112,14 @@ class CobrosTable extends Table
             ->maxLength('usuario', 255)
             ->requirePresence('usuario', 'create')
             ->notEmptyString('usuario');
+
+        $validator
+            ->provider('proffer', 'Proffer\Model\Validation\ProfferRules')
+            ->add('img', 'extension', [
+                'rule'=> ['extension',['png','jpeg','jpg']],
+                'message' => 'La imagen no tiene la extensión correcta. Debe ser .jpeg, .jpg o .png.'
+            ])
+            ->allowEmpty('img');
 
         return $validator;
     }

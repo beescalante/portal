@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Mailer\MailerAwareTrait;
 
 /**
  * Cobros Controller
@@ -12,6 +13,7 @@ use App\Controller\AppController;
  */
 class CobrosController extends AppController
 {
+    use MailerAwareTrait;
     /**
      * Index method
      *
@@ -19,11 +21,11 @@ class CobrosController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Sedes'],
-        ];
-        $cobros = $this->paginate($this->Cobros);
+        $this->loadModel('Estudiantes');
+        $estudiante=$this->Estudiantes->get($this->Auth->user('estudiante_id'),['contain'=>['Sedes','Carreras','Nacionalidades']]);
 
+        $cobros = $this->Cobros->find('all',['conditions'=>['Cobros.cedula'=>$estudiante->cedula],'contain'=>['Sedes'],'order'=>['status'=>'asc']]);
+        
         $this->set(compact('cobros'));
     }
 
@@ -44,68 +46,31 @@ class CobrosController extends AppController
     }
 
     /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $cobro = $this->Cobros->newEntity();
-        if ($this->request->is('post')) {
-            $cobro = $this->Cobros->patchEntity($cobro, $this->request->getData());
-            if ($this->Cobros->save($cobro)) {
-                $this->Flash->success(__('The cobro has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The cobro could not be saved. Please, try again.'));
-        }
-        $sedes = $this->Cobros->Sedes->find('list', ['limit' => 200]);
-        $this->set(compact('cobro', 'sedes'));
-    }
-
-    /**
      * Edit method
      *
      * @param string|null $id Cobro id.
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function reportar($id = null)
     {
         $cobro = $this->Cobros->get($id, [
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $cobro = $this->Cobros->patchEntity($cobro, $this->request->getData());
+            $cobro->fechapago=date('Y-m-d H:i:s');
+            $cobro->status=3;
             if ($this->Cobros->save($cobro)) {
-                $this->Flash->success(__('The cobro has been saved.'));
+                $this->Flash->success(__('El pago #'.$cobro->id.' se ha registrado exitosamente.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The cobro could not be saved. Please, try again.'));
+            $this->Flash->error(__('El pago #'.$cobro->id.' no se ha registrado. Por favor, intente más tarde.'));
         }
         $sedes = $this->Cobros->Sedes->find('list', ['limit' => 200]);
         $this->set(compact('cobro', 'sedes'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Cobro id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $cobro = $this->Cobros->get($id);
-        if ($this->Cobros->delete($cobro)) {
-            $this->Flash->success(__('The cobro has been deleted.'));
-        } else {
-            $this->Flash->error(__('The cobro could not be deleted. Please, try again.'));
-        }
 
-        return $this->redirect(['action' => 'index']);
-    }
 }

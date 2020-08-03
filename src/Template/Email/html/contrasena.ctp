@@ -13,7 +13,7 @@
                             <tr>
                                 <td class="editable-img" align="center">
                                     <a href="#">
-                                        <img editable="true" class="centerize" mc:edit="image101" src="../images/logo-1.png" style="display:block; line-height:0; font-size:0; border:0;" border="0" alt="image" />
+                                        <img editable="true" class="centerize" mc:edit="image101" src="https://usantalucia.ac.cr/mail_usl/img/rostro.png" style="display:block; line-height:0; font-size:0; border:0;" border="0" alt="image" width="300" />
                                     </a>
                                 </td>
                             </tr>
@@ -28,18 +28,8 @@
                                     <table width="135" align="center" border="0" cellspacing="0" cellpadding="0" style="max-width: 135px;">
                                         <tr>
                                             <td class="editable-img" align="center">
-                                                <a href="#">
-                                                    <img editable="true" class="centerize" mc:edit="image102" src="../images/social-icon-twitter.png" style="display:block; line-height:0; font-size:0; border:0;" border="0" alt="image" />
-                                                </a>
-                                            </td>
-                                            <td class="editable-img" align="center">
-                                                <a href="#">
-                                                    <img editable="true" class="centerize" mc:edit="image103" src="../images/social-icon-twitter.png" style="display:block; line-height:0; font-size:0; border:0;" border="0" alt="image" />
-                                                </a>
-                                            </td>
-                                            <td class="editable-img" align="right">
-                                                <a href="#">
-                                                    <img editable="true" class="centerize" mc:edit="image104" src="../images/social-icon-fb.png" style="display:block; line-height:0; font-size:0; border:0;" border="0" alt="image" />
+                                                <a href="https://www.facebook.com/usantalucia" target="_blank">
+                                                    <img editable="true" class="centerize" mc:edit="image102" src="https://usantalucia.ac.cr/mail_usl/img/icons/social-icon-fb.png" style="display:block; line-height:0; font-size:0; border:0;" border="0" alt="image" />
                                                 </a>
                                             </td>
                                         </tr>
@@ -71,7 +61,7 @@
                             <tr>
                                 <td align="center" mc:edit="text101" class="text_color_282828" style="line-height: 1;color: #282828; font-size: 18px; font-weight: 600; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                     <div class="editable-text">
-                                        <span class="text_container">Unlock your Account</span>
+                                        <span class="text_container">Recupere su contraseña</span>
                                     </div>
                                 </td>
                             </tr><!-- END email heading -->
@@ -83,7 +73,7 @@
                             <tr>
                                 <td class="editable-img" align="center">
                                     <a href="#">
-                                        <img editable="true" mc:edit="image105" src="../images/circle-icon-locked.png" style="display:block; line-height:0; font-size:0; border:0;" border="0" alt="image" />
+                                        <img editable="true" mc:edit="image105" src="https://usantalucia.ac.cr/mail_usl/img/icons/circle-icon-locked.png" style="display:block; line-height:0; font-size:0; border:0;" border="0" alt="image" />
                                     </a>
                                 </td>
                             </tr><!-- END main-icon -->
@@ -95,7 +85,7 @@
                             <tr>
                                 <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #c6c6c6; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                     <div class="editable-text">
-                                        <span class="text_container">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</span>
+                                        <span class="text_container">¡Hola <?php echo $nombre;?>! Usted ha iniciado un proceso de recuperaci&oacute;n de contrase&ntilde;a en nuestro portal acad&eacute;mico. Para recuperar su contrase&ntilde;a haga clic en el siguiente botón o copie y pegue el enlace en su navegador:</span>
                                     </div>
                                 </td>
                             </tr><!-- END email details -->
@@ -108,21 +98,6 @@
                                 <td align="center">
                                     <table align="center" border="0" cellspacing="0" cellspacing="0">
                                         <tr>
-                                            <td>
-                                                <table class="button_bg_color_282828" bgcolor="#282828" width="120" height="40" align="left" border="0" cellpadding="0" cellspacing="0" style="border-radius:5px; border-collapse: separate">
-                                                    <tr>
-                                                        <td mc:edit="text103" align="center" valign="middle" style="font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
-                                                            <div class="editable-text">
-                                                                <span class="text_container">
-                                                                    <a href="#" class="text_color_ffffff" style="text-decoration: none; color: #ffffff;">Cancel</a>
-                                                                </span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-
-                                            <!-- VERTICAL GAP -->
                                             <td width="20"></td>
 
                                             <td>
@@ -131,7 +106,7 @@
                                                         <td mc:edit="text104" align="center" valign="middle" style="font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                                             <div class="editable-text">
                                                                 <span class="text_container">
-                                                                    <a href="#" class="text_color_ffffff" style="text-decoration: none; color: #ffffff;">Cancel</a>
+                                                                    <a href="<?php echo $url;?>" class="text_color_ffffff" style="text-decoration: none; color: #ffffff;" target="_blank">Recuperar</a>
                                                                 </span>
                                                             </div>
                                                         </td>
@@ -142,6 +117,22 @@
                                     </table>
                                 </td>
                             </tr><!-- END buttons -->
+                            <!-- email details -->
+                            <tr>
+                                <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #c6c6c6; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                                    <div class="editable-text">
+                                        <span class="text_container">Enlace: <a href="<?php echo $url; ?>"><?php echo $url; ?></a></span>
+                                    </div>
+                                </td>
+                            </tr><!-- END email details -->
+                            <!-- email details -->
+                            <tr>
+                                <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #c6c6c6; font-size: 12px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                                    <div class="editable-text">
+                                        <span class="text_container"><br>Si usted no ha solicitado recuperar su contrase&ntilde;a, es posible que otro usuario haya ingresado su direcci&oacute;n de correo electr&oacute;nico por error mientras intenta recuperar una contrase&ntilde;a. Si usted no hizo la solicitud, haga caso omiso de este correo.</span>
+                                    </div>
+                                </td>
+                            </tr><!-- END email details -->
                         </table><!-- END body-container -->
                     </td>
                 </tr>
@@ -159,7 +150,7 @@
                 <tr>
                     <td align="center" mc:edit="text105" class="text_color_c6c6c6" style="line-height: 1;color: #c6c6c6; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                         <div class="editable-text">
-                            <span class="text_container">&copy; 2015 NoticeLab. All Rights Reserved.</span>
+                            <span class="text_container">&copy; 2020 Universidad Santa Lucía. Todos los derechos.</span>
                         </div>
                     </td>
                 </tr>
@@ -169,7 +160,7 @@
                 <tr>
                     <td align="center" mc:edit="text106" class="text_color_c6c6c6" style="line-height: 1;color: #c6c6c6; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                         <div class="editable-text">
-                            <span class="text_container">4170 Haymond St. &middot; Mcdermitt &middot; PA 18503 USA</span>
+                            <span class="text_container"><a href="https://usl.ac.cr" target="_blank">www.usl.ac.cr</a></span>
                         </div>
                     </td>
                 </tr>

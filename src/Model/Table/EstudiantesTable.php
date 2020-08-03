@@ -93,8 +93,7 @@ class EstudiantesTable extends Table
         $validator
             ->scalar('apellido2')
             ->maxLength('apellido2', 255)
-            ->requirePresence('apellido2', 'create')
-            ->notEmptyString('apellido2');
+            ->allowEmptyString('apellido2');
 
         $validator
             ->scalar('emailp')

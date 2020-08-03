@@ -29,9 +29,11 @@ $cakeDescription = 'Portal Académico USL';
     <?= $this->Html->meta('icon') ?>
     <?= $this->fetch('meta') ?>
 
-    <?= $this->Html->css(['../plugins/global/plugins.bundle','../plugins/prismjs/prismjs.bundle','style.bundle','estilo']) ?>
+    <?= $this->Html->css(['../plugins/global/plugins.bundle','../plugins/prismjs/prismjs.bundle','style.bundle','estilo','../plugins/datatables/datatables.bundle']) ?>
     <?= $this->fetch('css') ?>
-
+    
+    <?= $this->Html->script(['../plugins/global/plugins.bundle','../plugins/prismjs/prismjs.bundle','scripts.bundle','login-general','../plugins/datatables/datatables.bundle'])?>
+    <?= $this->fetch('script') ?>
     
 </head>
 <body  id="kt_body"  class="header-fixed header-mobile-fixed">
@@ -48,9 +50,13 @@ $cakeDescription = 'Portal Académico USL';
             </div>
         </div>
     </div>
+    <?= $this->element('loader') ?>
     <!-- end::Content -->
     <?=$this->element('userpanel')?>
     <!-- begin::Scripts -->
+    <script>
+        var csrfToken = <?= json_encode($this->request->getParam('_csrfToken')) ?>;
+    </script>
     <script>
             var KTAppSettings = {
             "breakpoints": {
@@ -111,8 +117,6 @@ $cakeDescription = 'Portal Académico USL';
             "font-family": "Poppins"
         };
     </script>
-    <?= $this->Html->script(['../plugins/global/plugins.bundle','../plugins/prismjs/prismjs.bundle','scripts.bundle','login-general'])?>
-    <?= $this->fetch('script') ?>
     <!-- end::Scripts -->
 </body>
     

@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-group d-flex flex-wrap flex-center">
                             <button id="kt_login_forgot_submit" class="btn btn-primary  font-weight-bold px-9 py-4 my-3 mx-2">Enviar</button>
-                            <button id="kt_login_forgot_cancel" class="btn btn-light-primary  font-weight-bold px-9 py-4 my-3 mx-2">Cancelar</button>
+                            <a class="btn btn-light-primary  font-weight-bold px-9 py-4 my-3 mx-2" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']) ?>">Cancelar</a>
                         </div>
                     <?= $this->Form->end() ?>
                     <!--end::Form-->

@@ -33,17 +33,8 @@ class Cobro extends Entity
      * @var array
      */
     protected $_accessible = [
-        'cedula' => true,
-        'concepto' => true,
-        'subtotal' => true,
-        'impuesto' => true,
-        'descuento' => true,
-        'total' => true,
-        'status' => true,
-        'sede_id' => true,
-        'referencia' => true,
-        'created' => true,
-        'usuario' => true,
-        'sede' => true,
+        '*' => true,
+        'id' => false,
+        'img_dir'=>false
     ];
 }

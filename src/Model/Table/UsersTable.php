@@ -123,18 +123,6 @@ class UsersTable extends Table
             ->allowEmptyDateTime('timeout');
 
         $validator
-            ->scalar('photo')
-            ->maxLength('photo', 255)
-            ->requirePresence('photo', 'create')
-            ->notEmptyString('photo');
-
-        $validator
-            ->scalar('photo_dir')
-            ->maxLength('photo_dir', 255)
-            ->requirePresence('photo_dir', 'create')
-            ->notEmptyString('photo_dir');
-
-        $validator
             ->boolean('firstime')
             ->notEmptyString('firstime');
 

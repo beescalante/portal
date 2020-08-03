@@ -68,7 +68,12 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('cambiar-contrasena', ['controller' => 'Users', 'action' => 'cambiarcontrasena']);
     $routes->connect('mi-perfil', ['controller' => 'Users', 'action' => 'miperfil']);
     $routes->connect('solicitar-contrasena', ['controller' => 'Users', 'action' => 'pedircontrasena']);
-    $routes->connect('reestablecer-contrasena', ['controller' => 'Users', 'action' => 'recuperarcontrasena']);
+    $routes->connect('reestablecer-contrasena/*', ['controller' => 'Users', 'action' => 'recuperarcontrasena']);
+    $routes->connect('nueva-solicitud', ['controller' => 'Solicitudes', 'action' => 'add']);
+    $routes->connect('mis-solicitudes', ['controller' => 'Solicitudes', 'action' => 'index']);
+    $routes->connect('mis-pagos', ['controller' => 'Cobros', 'action' => 'index']);
+    $routes->connect('mis-pagos/ver/*', ['controller' => 'Cobros', 'action' => 'view']);
+    $routes->connect('mis-pagos/reportar-pago/*', ['controller' => 'Cobros', 'action' => 'reportar']);
 
     /**
      * Connect catchall routes for all controllers.

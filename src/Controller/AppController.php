@@ -90,7 +90,7 @@ class AppController extends Controller
 
     public function isAuthorized($user)
     {
-        if(isset($user['role_id']) and $user ['role_id'] === 1)
+        if(isset($user['role_id']) and $user ['role_id'] === 3)
         {
             return true;
         }
