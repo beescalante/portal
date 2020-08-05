@@ -13,7 +13,7 @@
                 <div class="login-form login-signin">
                     <div class="text-center mb-10 mb-lg-20">
                         <h2 class="font-weight-bold">¡Ingrese ahora!</h2>
-                        <p class="text-muted font-weight-bold">Escriba su correo institucional y su contraseña</p>
+                        <p class="text-muted font-weight-bold">Escriba su correo institucional y su contraseña de este portal</p>
                     </div>
                     <?= $this->Flash->render() ?>
                     <?= $this->Flash->render('auth') ?>

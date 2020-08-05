@@ -12,7 +12,7 @@
                 <div class="login-form login-signin">
                     <div class="text-center mb-10 mb-lg-20">
                         <h3 class="">Recuperar Contraseña</h3>
-                        <p class="text-muted font-weight-bold">Ingrese su nueva contraseña con un mínimo de 6 caracteres y un máximo de 12.</p>
+                        <p class="text-muted font-weight-bold">Ingrese su nueva contraseña con un mínimo de 6 caracteres y un máximo de 12. Esta contraseña NO es la misma que tiene asignada para el uso de Microsoft Teams. Usted deberá conservar ambas contraseñas.</p>
                     </div>
                     <?= $this->Flash->render() ?>
                     <!--begin::Form-->

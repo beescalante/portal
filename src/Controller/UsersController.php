@@ -162,7 +162,7 @@ class UsersController extends AppController
             }
             if ($users->count()==0) 
             {
-                $this->Flash->error('El correo electrónico solicitado no se encuentra registrado. Por favor, intente nuevamente.');
+                $this->Flash->error('Este correo institucional no se encuentra registrado. Por favor, comuníquese con su sede indicando su dirección de correo institucional.');
             } else {
                 $passkey = uniqid();
                 $url = Router::url(['controller' => 'Users', 'action' => 'recuperarcontrasena'], TRUE) . '/' . $passkey;
@@ -170,10 +170,10 @@ class UsersController extends AppController
                 if ($this->Users->updateAll(['passkey' => $passkey, 'timeout' => $timeout], ['id' => $user_id])){
                     
                     $this->getMailer('Pages')->send('contrasena', [$email,$nombre,$apellido,$url]);
-                    $this->Flash->success(__('Hemos enviado un mensaje de correo con el enlace/url para recuperar su contraseña. Revise su carpeta de Spam o correo no deseado.'));
+                    $this->Flash->success(__('Hemos enviado un mensaje de correo a su dirección de correo institucional con el enlace/url para recuperar su contraseña. Por favor, revise en su cuenta Outlook.'));
                 } 
                 else {
-                    $this->Flash->error('Error en reestablecimiento de contraseña');
+                    $this->Flash->error('Error en la recuperación de contraseña');
                 }
             }
         }
@@ -208,7 +208,7 @@ class UsersController extends AppController
                     }
                 }
             } else {
-                $this->Flash->error('Enlace inválido o expirado. Por favor, revise su correo o intente solicitar su contraseña nuevamente.');
+                $this->Flash->error('Enlace inválido o expirado. Por favor, que la dirección de correo institucional sea correcta o intente solicitar su contraseña nuevamente.');
                 $this->redirect(['action' => 'pedircontrasena']);
             }
             unset($user->password);

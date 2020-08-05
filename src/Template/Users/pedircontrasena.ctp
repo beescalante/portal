@@ -12,7 +12,7 @@
                 <div class="login-form login-signin">
                     <div class="text-center mb-10 mb-lg-20">
                         <h3 class="">¿Olvidó su contraseña?</h3>
-                        <p class="text-muted font-weight-bold">Ingrese su dirección de correo electrónico institucional. Recibirá un mensaje de correo con el enlace o link para poder recuperar su contraseña.</p>
+                        <p class="text-muted font-weight-bold">Ingrese su dirección de correo electrónico institucional. Recibirá un mensaje al correo (Outlook) institucional con el enlace/link para poder recuperar su contraseña. Esta contraseña NO es la misma que tiene asignada para el uso de Microsoft Teams. Usted deberá conservar ambas contraseñas.</p>
                     </div>
                     <?= $this->Flash->render() ?>
                     <!--begin::Form-->

@@ -188,7 +188,7 @@
                                     </span>                        
                                 </div>
                                 <div class="alert-text font-weight-bold">
-                                    Al cambiar su contraseña, automáticamente su sesión será cerrada.
+                                    Al cambiar su contraseña, automáticamente su sesión será cerrada. Esta contraseña NO es la misma que tiene asignada para el uso de Microsoft Teams. Usted deberá conservar ambas contraseñas.
                                 </div>
                                 <div class="alert-close">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
