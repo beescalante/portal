@@ -27,7 +27,7 @@ class UsersController extends AppController
         //estudiante rol=3
         if(isset($user['role_id']) and $user['role_id'] === 3)
         {
-            if(in_array($this->request->action, ['login','logout','home','cambiarcontrasena','miperfil','pedircontrasena','recuperarcontrasena']))
+            if(in_array($this->request->action, ['login','logout','home','cambiarcontrasena','miperfil','pedircontrasena','recuperarcontrasena','condiciones']))
             {
                 return true;
             }else{
@@ -216,5 +216,15 @@ class UsersController extends AppController
         } else {
             $this->redirect('/');
         }
+    }
+
+    /**
+     * Inicio
+     *
+     */
+    public function condiciones()
+    {
+        
+       
     }
 }

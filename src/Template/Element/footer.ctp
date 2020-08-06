@@ -10,6 +10,8 @@
 
         <!--begin::Nav-->
         <div class="nav nav-dark order-1 order-md-2">
+            <a href="https://portal.usl.ac.cr/politicas_privacidad_USL.pdf" class="nav-link pl-3 pr-0" target="_blank">Privacidad</a>
+            <a href="https://portal.usl.ac.cr/condiciones_uso_USL.pdf" class="nav-link pl-3 pr-0" target="_blank">Condiciones</a>
             <a href="https://usl.ac.cr/soporte" target="_blank" class="nav-link pl-3 pr-0">Soporte</a>
         </div>
         <!--end::Nav-->
