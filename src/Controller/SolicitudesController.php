@@ -36,7 +36,7 @@ class SolicitudesController extends AppController
     public function index()
     {
 
-        $solicitudes = $this->Solicitudes->find('all',['conditions'=>['Solicitudes.user_id'=>$this->Auth->user('id'),'Solicitudes.estudiante_id'=>$this->Auth->user('estudiante_id')],'contain'=>['Sedes','Carreras','Materias']]);
+        $solicitudes = $this->Solicitudes->find('all',['conditions'=>['Solicitudes.user_id'=>$this->Auth->user('id'),'Solicitudes.estudiante_id'=>$this->Auth->user('estudiante_id')],'contain'=>['Sedes','Carreras','Materias'],'order'=>['Solicitudes.id'=>'desc']]);
 
         $this->set(compact('solicitudes'));
     }
@@ -68,6 +68,11 @@ class SolicitudesController extends AppController
             $solicitude->sede_id=$estudiante->sede_id;
             $solicitude->periodo=$periodo->nombre;
             if ($this->Solicitudes->save($solicitude)) {
+                //guardar datos en estudiantes
+                $estudiante->telefono=$this->request->getData('telefono');
+                $estudiante->emailp=$this->request->getData('emailp');
+                $this->Estudiantes->save($estudiante);
+
                 //correo por sede
                 if($solicitude->sede_id==1){
                     if($solicitude->carrera_id==7 || $solicitude->carrera_id==13 || $solicitude->carrera_id==24){

@@ -43,105 +43,194 @@
                 <div id="kt_header_menu" class="header-menu header-menu-left header-menu-mobile  header-menu-layout-default ">
                     <!-- begin::Header Nav -->
                     <ul class="menu-nav">
-                        <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
-                            <a  href="javascript:;" class="menu-link menu-toggle">
-                                <span class="menu-text">Biblioteca</span>
-                                <span class="menu-desc">Material digital</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                            <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
-                                <ul class="menu-subnav">
-                                    <li class="menu-item"  aria-haspopup="true">
-                                        <a  href="https://accessmedicina.mhmedical.com/" class="menu-link" target="_blank">
-                                            <span class="menu-text">Enfermería</span>
-                                            <span class="menu-desc"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
-                            <a  href="#" class="menu-link menu-toggle">
-                                <span class="menu-text">Empleabilidad</span>
-                                <span class="menu-desc">Bolsa de Empleo</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                        </li>
-                        <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
-                            <a  href="javascript:;" class="menu-link menu-toggle">
-                                <span class="menu-text">Herramientas</span>
-                                <span class="menu-desc">Todas las aplicaciones</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                            <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
-                                <ul class="menu-subnav">
-                                    <li class="menu-item"  aria-haspopup="true">
-                                        <a  href="https://outlook.office365.com" class="menu-link"  target="_blank">
-                                            <span class="menu-text">Outlook</span>
-                                            <span class="menu-desc"></span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item"  aria-haspopup="true">
-                                        <a href="https://teams.microsoft.com/" class="menu-link " target="_blank">
-                                            <span class="menu-text">Teams</span>
-                                            <span class="menu-desc"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
-                            <a  href="javascript:;" class="menu-link menu-toggle">
-                                <span class="menu-text">Matrícula</span>
-                                <span class="menu-desc">Realice su solicitud de matrícula</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                            <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
-                                <ul class="menu-subnav">
-                                    <li class="menu-item"  aria-haspopup="true">
-                                        <a  href="<?= $this->Url->build(['controller' => 'Solicitudes', 'action' => 'add']) ?>" class="menu-link ">
-                                            <span class="menu-text">Nueva Solicitud</span>
-                                            <span class="menu-desc"></span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item"  aria-haspopup="true">
-                                        <a  href="<?= $this->Url->build(['controller' => 'Solicitudes', 'action' => 'index']) ?>" class="menu-link">
-                                            <span class="menu-text">Ver Solicitudes</span>
-                                            <span class="menu-desc"></span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item"  aria-haspopup="true">
-                                        <a  href="<?= $this->Url->build(['controller' => 'Cobros', 'action' => 'index']) ?>" class="menu-link ">
-                                            <span class="menu-text">Pagos de Matrícula</span>
-                                            <span class="menu-desc"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
-                            <a  href="javascript:;" class="menu-link menu-toggle">
-                                <span class="menu-text">Académico</span>
-                                <span class="menu-desc">Consulte sus datos académicos</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                            <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
-                                <ul class="menu-subnav">
-                                    <li class="menu-item"  aria-haspopup="true">
-                                        <a  href="#" class="menu-link">
-                                            <span class="menu-text">Historial Académico</span>
-                                            <span class="menu-desc"></span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item"  aria-haspopup="true">
-                                        <a  href="#" class="menu-link">
-                                            <span class="menu-text">Plan de Estudios</span>
-                                            <span class="menu-desc"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                        <?php if($current_user['sede_id']==2 || $current_user['sede_id']==6): ?>
+                            <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
+                                <a  href="javascript:;" class="menu-link menu-toggle">
+                                    <span class="menu-text">Biblioteca</span>
+                                    <span class="menu-desc">Material digital</span>
+                                    <i class="menu-arrow"></i>
+                                </a>
+                                <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
+                                    <ul class="menu-subnav">
+                                        <li class="menu-item"  aria-haspopup="true">
+                                            <a  href="https://accessmedicina.mhmedical.com/" class="menu-link" target="_blank">
+                                                <span class="menu-text">Enfermería</span>
+                                                <span class="menu-desc"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
+                                <a  href="#" class="menu-link" data-toggle="tooltip" data-placement="bottom" data-original-title="Próximamente...">
+                                    <span class="menu-text">Empleabilidad</span>
+                                    <span class="menu-desc">Bolsa de Empleo</span>
+                                    <i class="menu-arrow"></i>
+                                </a>
+                            </li>
+                            <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
+                                <a  href="javascript:;" class="menu-link menu-toggle">
+                                    <span class="menu-text">Herramientas</span>
+                                    <span class="menu-desc">Todas las aplicaciones</span>
+                                    <i class="menu-arrow"></i>
+                                </a>
+                                <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
+                                    <ul class="menu-subnav">
+                                        <li class="menu-item"  aria-haspopup="true">
+                                            <a  href="https://outlook.office365.com" class="menu-link"  target="_blank">
+                                                <span class="menu-text">Outlook</span>
+                                                <span class="menu-desc"></span>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item"  aria-haspopup="true">
+                                            <a href="https://teams.microsoft.com/" class="menu-link " target="_blank">
+                                                <span class="menu-text">Teams</span>
+                                                <span class="menu-desc"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
+                                <?php if($current_user['sede_id']==2): ?>
+                                    <a  href="https://usl-alajuela.msasoft.net" class="menu-link" target="_blank">
+                                        <span class="menu-text">Matrícula</span>
+                                        <span class="menu-desc">Realice su solicitud de matrícula</span>
+                                        <i class="menu-arrow"></i>
+                                    </a>
+                                <?php elseif($current_user['sede_id']==6): ?>
+                                    <a  href="https://usl-sancarlos-msasoft.azurewebsites.net/Default" class="menu-link" target="_blank">
+                                        <span class="menu-text">Matrícula</span>
+                                        <span class="menu-desc">Realice su solicitud de matrícula</span>
+                                        <i class="menu-arrow"></i>
+                                    </a>
+                                <?php else: ?>
+                                <?php endif; ?>
+                            </li>
+                            <!-- <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
+                                <a  href="javascript:;" class="menu-link menu-toggle">
+                                    <span class="menu-text">Académico</span>
+                                    <span class="menu-desc">Consulte sus datos académicos</span>
+                                    <i class="menu-arrow"></i>
+                                </a>
+                                <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
+                                    <ul class="menu-subnav">
+                                        <li class="menu-item"  aria-haspopup="true">
+                                            <a  href="#" class="menu-link">
+                                                <span class="menu-text">Historial Académico</span>
+                                                <span class="menu-desc"></span>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item"  aria-haspopup="true">
+                                            <a  href="#" class="menu-link">
+                                                <span class="menu-text">Plan de Estudios</span>
+                                                <span class="menu-desc"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li> -->
+                        <?php else: ?>
+                            <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
+                                <a  href="javascript:;" class="menu-link menu-toggle">
+                                    <span class="menu-text">Biblioteca</span>
+                                    <span class="menu-desc">Material digital</span>
+                                    <i class="menu-arrow"></i>
+                                </a>
+                                <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
+                                    <ul class="menu-subnav">
+                                        <li class="menu-item"  aria-haspopup="true">
+                                            <a  href="https://accessmedicina.mhmedical.com/" class="menu-link" target="_blank">
+                                                <span class="menu-text">Enfermería</span>
+                                                <span class="menu-desc"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
+                                <a  href="#" class="menu-link" data-toggle="tooltip" data-placement="bottom" data-original-title="Próximamente...">
+                                    <span class="menu-text">Empleabilidad</span>
+                                    <span class="menu-desc">Bolsa de Empleo</span>
+                                    <i class="menu-arrow"></i>
+                                </a>
+                            </li>
+                            <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
+                                <a  href="javascript:;" class="menu-link menu-toggle">
+                                    <span class="menu-text">Herramientas</span>
+                                    <span class="menu-desc">Todas las aplicaciones</span>
+                                    <i class="menu-arrow"></i>
+                                </a>
+                                <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
+                                    <ul class="menu-subnav">
+                                        <li class="menu-item"  aria-haspopup="true">
+                                            <a  href="https://outlook.office365.com" class="menu-link"  target="_blank">
+                                                <span class="menu-text">Outlook</span>
+                                                <span class="menu-desc"></span>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item"  aria-haspopup="true">
+                                            <a href="https://teams.microsoft.com/" class="menu-link " target="_blank">
+                                                <span class="menu-text">Teams</span>
+                                                <span class="menu-desc"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
+                                <a  href="javascript:;" class="menu-link menu-toggle">
+                                    <span class="menu-text">Matrícula</span>
+                                    <span class="menu-desc">Realice su solicitud de matrícula</span>
+                                    <i class="menu-arrow"></i>
+                                </a>
+                                <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
+                                    <ul class="menu-subnav">
+                                        <li class="menu-item"  aria-haspopup="true">
+                                            <a  href="<?= $this->Url->build(['controller' => 'Solicitudes', 'action' => 'add']) ?>" class="menu-link ">
+                                                <span class="menu-text">Nueva Solicitud</span>
+                                                <span class="menu-desc"></span>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item"  aria-haspopup="true">
+                                            <a  href="<?= $this->Url->build(['controller' => 'Solicitudes', 'action' => 'index']) ?>" class="menu-link">
+                                                <span class="menu-text">Ver Solicitudes</span>
+                                                <span class="menu-desc"></span>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item"  aria-haspopup="true">
+                                            <a  href="<?= $this->Url->build(['controller' => 'Cobros', 'action' => 'index']) ?>" class="menu-link ">
+                                                <span class="menu-text">Pagos de Matrícula</span>
+                                                <span class="menu-desc"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
+                                <a  href="#" class="menu-link menu-toggle" data-toggle="tooltip" data-placement="bottom" data-original-title="Próximamente...">
+                                    <span class="menu-text">Académico</span>
+                                    <span class="menu-desc">Consulte sus datos académicos</span>
+                                    <i class="menu-arrow"></i>
+                                </a>
+                                <!-- <div class="menu-submenu menu-submenu-classic menu-submenu-left" >
+                                    <ul class="menu-subnav">
+                                        <li class="menu-item"  aria-haspopup="true">
+                                            <a  href="#" class="menu-link">
+                                                <span class="menu-text">Historial Académico</span>
+                                                <span class="menu-desc"></span>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item"  aria-haspopup="true">
+                                            <a  href="#" class="menu-link">
+                                                <span class="menu-text">Plan de Estudios</span>
+                                                <span class="menu-desc"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div> -->
+                            </li>
+                        <?php endif;?> 
                     </ul>
                     <!-- end::Header Nav -->
                 </div>
