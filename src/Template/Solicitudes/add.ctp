@@ -160,6 +160,10 @@
                                     Debe seleccionar una carrera primero...
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <input type="checkbox" value="1" required>
+                                He leído y acepto las <a href="https://portal.usl.ac.cr/condiciones_uso_USL.pdf" target="_blank">Condiciones de Uso</a>
+                            </div>
                         </div>
                         <div class="card-footer">
                             <?= $this->Form->button(('Solicitar'),['class'=>'btn btn-primary mr-2','id'=>'reg']) ?>

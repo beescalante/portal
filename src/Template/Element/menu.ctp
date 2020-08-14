@@ -54,7 +54,7 @@
                                     <ul class="menu-subnav">
                                         <li class="menu-item"  aria-haspopup="true">
                                             <a  href="https://accessmedicina.mhmedical.com/" class="menu-link" target="_blank">
-                                                <span class="menu-text">Enfermería</span>
+                                                <span class="menu-text">Ciencias de la Salud</span>
                                                 <span class="menu-desc"></span>
                                             </a>
                                         </li>
@@ -141,7 +141,7 @@
                                     <ul class="menu-subnav">
                                         <li class="menu-item"  aria-haspopup="true">
                                             <a  href="https://accessmedicina.mhmedical.com/" class="menu-link" target="_blank">
-                                                <span class="menu-text">Enfermería</span>
+                                                <span class="menu-text">Ciencias de la Salud</span>
                                                 <span class="menu-desc"></span>
                                             </a>
                                         </li>
