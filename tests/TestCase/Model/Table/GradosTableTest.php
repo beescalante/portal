@@ -1,21 +1,21 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\DocentesTable;
+use App\Model\Table\GradosTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\DocentesTable Test Case
+ * App\Model\Table\GradosTable Test Case
  */
-class DocentesTableTest extends TestCase
+class GradosTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\DocentesTable
+     * @var \App\Model\Table\GradosTable
      */
-    public $Docentes;
+    public $Grados;
 
     /**
      * Fixtures
@@ -23,10 +23,8 @@ class DocentesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Docentes',
         'app.Grados',
-        'app.Sedes',
-        'app.Users',
+        'app.Docentes',
     ];
 
     /**
@@ -37,8 +35,8 @@ class DocentesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Docentes') ? [] : ['className' => DocentesTable::class];
-        $this->Docentes = TableRegistry::getTableLocator()->get('Docentes', $config);
+        $config = TableRegistry::getTableLocator()->exists('Grados') ? [] : ['className' => GradosTable::class];
+        $this->Grados = TableRegistry::getTableLocator()->get('Grados', $config);
     }
 
     /**
@@ -48,7 +46,7 @@ class DocentesTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Docentes);
+        unset($this->Grados);
 
         parent::tearDown();
     }
@@ -69,16 +67,6 @@ class DocentesTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

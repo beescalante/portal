@@ -27,7 +27,16 @@ class UsersController extends AppController
         //estudiante rol=3
         if(isset($user['role_id']) and $user['role_id'] === 3)
         {
-            if(in_array($this->request->action, ['login','logout','home','cambiarcontrasena','miperfil','pedircontrasena','recuperarcontrasena','condiciones']))
+            if(in_array($this->request->action, ['login','logout','home','cambiarcontrasena','miperfil','pedircontrasena','recuperarcontrasena','']))
+            {
+                return true;
+            }else{
+                $this->Flash->error(__('Disculpe, usted no está autorizado para realizar esta acción.'));
+            }
+        }
+        if(isset($user['role_id']) and $user['role_id'] === 2)
+        {
+            if(in_array($this->request->action, ['login','logout','home','cambiarcontrasenad','miperfild','pedircontrasena','recuperarcontrasena','']))
             {
                 return true;
             }else{
@@ -85,7 +94,7 @@ class UsersController extends AppController
     }
 
     /**
-     * Cambiar contraseña 
+     * Cambiar contraseña Estudiantes
      *
      */
     public function cambiarcontrasena()
@@ -119,7 +128,41 @@ class UsersController extends AppController
     }
 
     /**
-     * Perfil: Editar
+     * Cambiar contraseña Docentes
+     *
+     */
+    public function cambiarcontrasenad()
+    {
+        $user =$this->Users->get($this->Auth->user('id')); 
+        if (!empty($this->request->getData())) { 
+            $user = $this->Users->patchEntity($user, [
+                'old_password'  => $this->request->getData(['old_password']),
+                'password'      => $this->request->getData(['password1']),
+                'password1'     => $this->request->getData(['password1']),
+                'password2'     => $this->request->getData(['password2'])
+                ],
+                ['validate' => 'password']
+            );
+            if ($this->Users->save($user)) { 
+                    
+                $this->Flash->success('Su contraseña ha sido modificada correctamente.'); 
+                    
+                $this->logout();
+            }else {    
+                $this->Flash->error('Su contraseña no pudo ser modificada. Por favor, intente más tarde.');   
+            } 
+        }
+        $this->set('user',$user);
+
+        if($this->Auth->user('role_id')==2){
+            $this->loadModel('Docentes');
+            $docente=$this->Docentes->get($this->Auth->user('docente_id'),['contain'=>['Sedes','Grados']]);
+        }
+        $this->set(compact('docente'));
+    }
+
+    /**
+     * Perfil Estudiante: Editar
      *
      */
     public function miperfil()
@@ -140,6 +183,32 @@ class UsersController extends AppController
 
         }
         $this->set(compact('estudiante'));
+       
+    }
+
+    /**
+     * Perfil Docente: Editar
+     *
+     */
+    public function miperfild()
+    {
+        if($this->Auth->user('role_id')==2){
+            $this->loadModel('Docentes');
+            $docente=$this->Docentes->get($this->Auth->user('docente_id'),['contain'=>['Sedes','Grados']]);
+            
+            if ($this->request->is(['patch', 'post', 'put'])) {
+                $docente = $this->Docentes->patchEntity($docente, $this->request->getData());
+                if ($this->Docentes->save($docente)) {
+                    $this->Flash->success(__('Sus datos han sido modificados con éxito.'));
+
+                    return $this->redirect(['action' => 'miperfild']);
+                }
+                $this->Flash->error(__('Sus datos no han podido ser modificados. Por favor, intente más tarde.'));
+            }
+            $grados= $this->Docentes->Grados->find('list',['limit'=>250]);
+
+        }
+        $this->set(compact('docente','grados'));
        
     }
 

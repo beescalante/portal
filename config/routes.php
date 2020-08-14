@@ -74,6 +74,9 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('mis-pagos', ['controller' => 'Cobros', 'action' => 'index']);
     $routes->connect('mis-pagos/ver/*', ['controller' => 'Cobros', 'action' => 'view']);
     $routes->connect('mis-pagos/reportar-pago/*', ['controller' => 'Cobros', 'action' => 'reportar']);
+    
+    $routes->connect('perfil', ['controller' => 'Users', 'action' => 'miperfild']);
+    $routes->connect('mi-contrasena', ['controller' => 'Users', 'action' => 'cambiarcontrasenad']);
 
     /**
      * Connect catchall routes for all controllers.

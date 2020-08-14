@@ -55,7 +55,7 @@
     <!--begin::Nav-->
     <div class="navi navi-spacer-x-0 p-0">
         <!--begin::Item-->
-        <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'miperfil']) ?>" class="navi-item">
+        <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'miperfild']) ?>" class="navi-item">
             <div class="navi-link">
                 <div class="symbol symbol-40 bg-light mr-3">
                     <div class="symbol-label">
@@ -83,7 +83,7 @@
         </a>
         <!--end:Item-->
         <!--begin::Item-->
-        <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'cambiarcontrasena']) ?>" class="navi-item">
+        <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'cambiarcontrasenad']) ?>" class="navi-item">
             <div class="navi-link">
                 <div class="symbol symbol-40 bg-light mr-3">
                     <div class="symbol-label">

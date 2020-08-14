@@ -52,7 +52,11 @@ $cakeDescription = 'Portal Académico USL';
     </div>
     <?= $this->element('loader') ?>
     <!-- end::Content -->
-    <?=$this->element('userpanel')?>
+    <?php if($current_user['role_id']==3): ?>
+        <?=$this->element('userpanel')?>
+    <?php else: ?>
+        <?=$this->element('userpaneld')?>
+    <?php endif; ?>
     <!-- begin::Scripts -->
     <script>
         var csrfToken = <?= json_encode($this->request->getParam('_csrfToken')) ?>;
