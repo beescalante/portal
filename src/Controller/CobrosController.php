@@ -14,6 +14,22 @@ use Cake\Mailer\MailerAwareTrait;
 class CobrosController extends AppController
 {
     use MailerAwareTrait;
+    
+    /*PERMISOLOGIA DE USUARIOS*/
+    public function isAuthorized($user){
+        //estudiante rol=3
+        if(isset($user['role_id']) and $user['role_id'] === 3)
+        {
+            if(in_array($this->request->action, ['index','view','reportar']))
+            {
+                return true;
+            }else{
+                $this->Flash->error(__('Disculpe, usted no está autorizado para realizar esta acción.'));
+            }
+        }
+        return parent::isAuthorized($user);
+    }
+
     /**
      * Index method
      *
@@ -25,7 +41,13 @@ class CobrosController extends AppController
         $estudiante=$this->Estudiantes->get($this->Auth->user('estudiante_id'),['contain'=>['Sedes','Carreras','Nacionalidades']]);
 
         $cobros = $this->Cobros->find('all',['conditions'=>['Cobros.cedula'=>$estudiante->cedula],'contain'=>['Sedes'],'order'=>['status'=>'asc']]);
-        
+        if($this->Auth->user('role_id')==3){
+            $student=$this->Estudiantes->get($this->Auth->user('estudiante_id'));
+
+            $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$student->cedula,'status'=>1]]);
+            
+            $this->set(compact('pagos'));
+        }
         $this->set(compact('cobros'));
     }
 
@@ -41,6 +63,15 @@ class CobrosController extends AppController
         $cobro = $this->Cobros->get($id, [
             'contain' => ['Sedes'],
         ]);
+
+        if($this->Auth->user('role_id')==3){
+            $this->loadModel('Estudiantes');
+            $student=$this->Estudiantes->get($this->Auth->user('estudiante_id'));
+
+            $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$student->cedula,'status'=>1]]);
+            
+            $this->set(compact('pagos'));
+        }
 
         $this->set('cobro', $cobro);
     }
@@ -68,6 +99,16 @@ class CobrosController extends AppController
             }
             $this->Flash->error(__('El pago #'.$cobro->id.' no se ha registrado. Por favor, intente más tarde.'));
         }
+
+        if($this->Auth->user('role_id')==3){
+            $this->loadModel('Estudiantes');
+            $student=$this->Estudiantes->get($this->Auth->user('estudiante_id'));
+
+            $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$student->cedula,'status'=>1]]);
+            
+            $this->set(compact('pagos'));
+        }
+
         $sedes = $this->Cobros->Sedes->find('list', ['limit' => 200]);
         $this->set(compact('cobro', 'sedes'));
     }

@@ -18,14 +18,15 @@
 				                profesional
 
 				            </p>
-							<?php if($current_user['sede_id']==2): ?>
-								<a href="https://usl-alajuela.msasoft.net" class="btn btn-success font-weight-bold py-2 px-6" target="_blank">¡Matricula ya!</a>
-							<?php elseif($current_user['sede_id']==6): ?>
-								<a href="https://usl-sancarlos-msasoft.azurewebsites.net/Default" class="btn btn-success font-weight-bold py-2 px-6" target="_blank">¡Matricula ya!</a>
-							<?php else: ?>
-								<a href="<?= $this->Url->build(['controller' => 'Solicitudes', 'action' => 'add']) ?>" class="btn btn-success font-weight-bold py-2 px-6">¡Matricula ya!</a>
-                            <?php endif; ?>
-				            
+				            <?php if($matriculacion==1):?>
+								<?php if($current_user['sede_id']==2): ?>
+									<a href="https://usl-alajuela.msasoft.net" class="btn btn-success font-weight-bold py-2 px-6" target="_blank">¡Matricula ya!</a>
+								<?php elseif($current_user['sede_id']==6): ?>
+									<a href="https://usl-sancarlos-msasoft.azurewebsites.net/Default" class="btn btn-success font-weight-bold py-2 px-6" target="_blank">¡Matricula ya!</a>
+								<?php else: ?>
+									<a href="<?= $this->Url->build(['controller' => 'Solicitudes', 'action' => 'add']) ?>" class="btn btn-success font-weight-bold py-2 px-6">¡Matricula ya!</a>
+	                            <?php endif; ?>
+	                        <?php endif; ?>
 				        </div>
 				    </div>
 				</div>

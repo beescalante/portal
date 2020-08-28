@@ -98,6 +98,12 @@ class AppController extends Controller
     }
     
     public function beforeRender(Event $event){
+        $this->loadModel('Periodos');
+        $periodos=$this->Periodos->find('all',['conditions'=>['status'=>1],'limit'=>1]);
+        foreach ($periodos as $periodo) {
+            $matriculacion=$periodo->matriculacion;
+        }
 
+        $this->set('matriculacion',$matriculacion);
     }
 }

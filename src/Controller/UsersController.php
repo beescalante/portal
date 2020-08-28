@@ -27,7 +27,7 @@ class UsersController extends AppController
         //estudiante rol=3
         if(isset($user['role_id']) and $user['role_id'] === 3)
         {
-            if(in_array($this->request->action, ['login','logout','home','cambiarcontrasena','miperfil','pedircontrasena','recuperarcontrasena','']))
+            if(in_array($this->request->action, ['login','logout','home','cambiarcontrasena','miperfil','pedircontrasena','recuperarcontrasena']))
             {
                 return true;
             }else{
@@ -36,7 +36,7 @@ class UsersController extends AppController
         }
         if(isset($user['role_id']) and $user['role_id'] === 2)
         {
-            if(in_array($this->request->action, ['login','logout','home','cambiarcontrasenad','miperfild','pedircontrasena','recuperarcontrasena','']))
+            if(in_array($this->request->action, ['login','logout','home','cambiarcontrasenad','miperfild','pedircontrasena','recuperarcontrasena']))
             {
                 return true;
             }else{
@@ -89,8 +89,15 @@ class UsersController extends AppController
      */
     public function home()
     {
-        
-       
+        if($this->Auth->user('role_id')==3){
+            $this->loadModel('Estudiantes');
+            $student=$this->Estudiantes->get($this->Auth->user('estudiante_id'));
+
+            $this->loadModel('Cobros');
+            $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$student->cedula,'status'=>1]]);
+            
+            $this->set(compact('pagos'));
+        }
     }
 
     /**
@@ -123,6 +130,11 @@ class UsersController extends AppController
         if($this->Auth->user('role_id')==3){
             $this->loadModel('Estudiantes');
             $estudiante=$this->Estudiantes->get($this->Auth->user('estudiante_id'),['contain'=>['Sedes','Carreras','Nacionalidades']]);
+
+            $this->loadModel('Cobros');
+            $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$estudiante->cedula,'status'=>1]]);
+            
+            $this->set(compact('pagos'));
         }
         $this->set(compact('estudiante'));
     }
@@ -180,6 +192,12 @@ class UsersController extends AppController
                 }
                 $this->Flash->error(__('Sus datos no han podido ser modificados. Por favor, intente más tarde.'));
             }
+
+            
+            $this->loadModel('Cobros');
+            $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$estudiante->cedula,'status'=>1]]);
+            
+            $this->set(compact('pagos'));
 
         }
         $this->set(compact('estudiante'));

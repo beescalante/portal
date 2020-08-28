@@ -38,6 +38,16 @@ class SolicitudesController extends AppController
 
         $solicitudes = $this->Solicitudes->find('all',['conditions'=>['Solicitudes.user_id'=>$this->Auth->user('id'),'Solicitudes.estudiante_id'=>$this->Auth->user('estudiante_id')],'contain'=>['Sedes','Carreras','Materias'],'order'=>['Solicitudes.id'=>'desc']]);
 
+        if($this->Auth->user('role_id')==3){
+            $this->loadModel('Estudiantes');
+            $student=$this->Estudiantes->get($this->Auth->user('estudiante_id'));
+
+            $this->loadModel('Cobros');
+            $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$student->cedula,'status'=>1]]);
+            
+            $this->set(compact('pagos'));
+        }
+
         $this->set(compact('solicitudes'));
     }
 
@@ -48,6 +58,7 @@ class SolicitudesController extends AppController
      */
     public function add()
     {
+
 
         $this->loadModel('Estudiantes');
         $estudiante=$this->Estudiantes->get($this->Auth->user('estudiante_id'),['contain'=>['Sedes','Carreras','Nacionalidades']]);
@@ -118,7 +129,14 @@ class SolicitudesController extends AppController
             }
             $this->Flash->error(__('Su solicitud de matrícula no pudo ser realizada. Por favor, intente más tarde.'));
         }
+        if($this->Auth->user('role_id')==3){
+            $student=$this->Estudiantes->get($this->Auth->user('estudiante_id'));
 
+            $this->loadModel('Cobros');
+            $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$student->cedula,'status'=>1]]);
+            
+            $this->set(compact('pagos'));
+        }
         $this->loadModel('Carreras');
         $sede_id=$estudiante->sede_id;
         $carreras = $this->Carreras->find('list', ['limit' => 200,'order'=>['Carreras.nombre'=>'asc']]);
