@@ -59,7 +59,7 @@
 				            <!--end::Symbol-->
 	            			<!--begin::Info-->
 				            <div class="d-flex flex-column flex-grow-1">
-				                <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Comunicado Oficial</a>
+				                <a href="#" class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Atención Estudiantes</a>
 				                <div class="d-flex">
 				                    <div class="d-flex align-items-center pr-5">
 				                        <span class="svg-icon svg-icon-md svg-icon-primary pr-1">
@@ -73,7 +73,7 @@
 											</svg>
 											<!--end::Svg Icon-->
 										</span>                        
-										<span class="text-muted font-weight-bold">7-08-2020</span>
+										<span class="text-muted font-weight-bold">7-10-2020</span>
 	                    			</div>
 	                    			<div class="d-flex align-items-center">
 	                        			<span class="svg-icon svg-icon-md svg-icon-primary pr-1">
@@ -98,24 +98,13 @@
 	        			<div class="pt-3">
 	           				<!--begin::Text-->
 				            <p class="text-dark-75 font-size-lg font-weight-normal pt-5 mb-2">
-				                En atención a las disposiciones y directrices emanadas por las Autoridades de Salud y a las nuevas restricciones sanitarias por COVID-19, hacemos del conocimiento de nuestra <b>COMUNIDAD UNIVERSITARIA</b> y <b>PÚBLICO EN GENERAL</b> lo siguiente:
+				                La Universidad Santa Lucía les invita a participar contestando la siguiente encuesta. Con la finalidad de evaluar la calidad del servicio y la percepción que tienen nuestros estudiantes sobre la educación superior en Costa Rica:
 				            </p>
 	            			<!--end::Text-->
 				            <!--begin::Description-->
 				            <p class="text-dark-75 font-size-lg font-weight-normal pt-5">
-				                1. Las instalaciones físicas de las sedes de: San José y Puntarenas, permanecerán cerradas del día <b>10 de agosto y hasta el 23 de agosto</b> del presente año, reabriendo las mismas el día <b>24 de agosto del 2020</b>, salvo disposición en contrario.
+				                Ingrese al siguiente enlace para participar: <a href="https://qfreeaccountssjc1.az1.qualtrics.com/jfe/form/SV_6o2E2GvvmfrPu5f" target="_blank">Ir a la encuesta ahora</a>
 				                <br>
-				                2. Las lecciones y demás actividades académicas continuarán realizándose con normalidad de manera virtual como hasta el momento se han venido desarrollando en todos los recintos de la Universidad.
-				                <br>
-				                3. La matrícula en las sedes que permanecerán cerradas se mantendrá de manera virtual.
-				                <br>
-				                4. El personal administrativo de las sedes que tendrán sus instalaciones físicas cerradas, se mantendrá realizando teletrabajo, por lo cual si desea realizar alguna consulta, podrá canalizarla a los siguientes números de teléfono / WhatsApp:
-				                <br><br>
-				                <b>Sede San José: 8923-5860</b><br>
-				                <b>Sede Puntarenas: 6143-4272</b><br>
-				                <span class="pt-7 d-block">
-				                	En razón de lo anterior, reiteramos la necesidad de permanecer atentos a las comunicaciones que puedan darse en los próximos días por parte de la Universidad, en acatamiento a las disposiciones que sean dadas por las autoridades gubernamentales.
-				                </span>
 				                <span class="pt-7 d-block"><b>Universidad Santa Lucía</b></span>
 				            </p>
 				            <!--end::Description-->

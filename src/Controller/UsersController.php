@@ -135,8 +135,9 @@ class UsersController extends AppController
             $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$estudiante->cedula,'status'=>1]]);
             
             $this->set(compact('pagos'));
+            $this->set(compact('estudiante'));
         }
-        $this->set(compact('estudiante'));
+        
     }
 
     /**
