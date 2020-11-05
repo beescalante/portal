@@ -147,6 +147,7 @@ class EstudiantesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->isUnique(['cedula'],'Esta cédula ya existe.'));
         $rules->add($rules->existsIn(['nacionalidade_id'], 'Nacionalidades'));
         $rules->add($rules->existsIn(['sede_id'], 'Sedes'));
         $rules->add($rules->existsIn(['carrera_id'], 'Carreras'));

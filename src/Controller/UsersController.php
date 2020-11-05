@@ -183,11 +183,15 @@ class UsersController extends AppController
         if($this->Auth->user('role_id')==3){
             $this->loadModel('Estudiantes');
             $estudiante=$this->Estudiantes->get($this->Auth->user('estudiante_id'),['contain'=>['Sedes','Carreras','Nacionalidades']]);
+            $user=$this->Users->get($this->Auth->user('id'));
             
             if ($this->request->is(['patch', 'post', 'put'])) {
                 $estudiante = $this->Estudiantes->patchEntity($estudiante, $this->request->getData());
                 if ($this->Estudiantes->save($estudiante)) {
-                    $this->Flash->success(__('Sus datos han sido modificados con éxito.'));
+                    $user->nombre=$estudiante->nombre;
+                    $user->apellido=$estudiante->apellido1;
+                    $this->Users->save($user);
+                    $this->Flash->success(__('Sus datos han sido modificados con éxito. El nombre en su usuario cambiará en su próximo inicio de sesión.'));
 
                     return $this->redirect(['action' => 'miperfil']);
                 }
@@ -214,11 +218,15 @@ class UsersController extends AppController
         if($this->Auth->user('role_id')==2){
             $this->loadModel('Docentes');
             $docente=$this->Docentes->get($this->Auth->user('docente_id'),['contain'=>['Sedes','Grados']]);
+            $user=$this->Users->get($this->Auth->user('id'));
             
             if ($this->request->is(['patch', 'post', 'put'])) {
                 $docente = $this->Docentes->patchEntity($docente, $this->request->getData());
                 if ($this->Docentes->save($docente)) {
-                    $this->Flash->success(__('Sus datos han sido modificados con éxito.'));
+                    $user->nombre=$docente->nombre;
+                    $user->apellido=$docente->apellido1;
+                    $this->Users->save($user);
+                    $this->Flash->success(__('Sus datos han sido modificados con éxito. El nombre en su usuario cambiará en su próximo inicio de sesión.'));
 
                     return $this->redirect(['action' => 'miperfild']);
                 }

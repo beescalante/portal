@@ -197,6 +197,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label text-alert">Cédula</label>
+                                <div class="col-lg-9 col-xl-6">
+                                    <?php echo $this->Form->control('cedula',['label'=>false,'class'=>'form-control form-control-lg form-control-solid mb-2','placeholder'=>'Número de Cédula','type'=>'text','autocomplete'=>'new-password','required'=>'required']); ?>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-xl-3 col-lg-3 col-form-label text-alert">Nombre</label>
                                 <div class="col-lg-9 col-xl-6">
                                     <?php echo $this->Form->control('nombre',['label'=>false,'class'=>'form-control form-control-lg form-control-solid mb-2','placeholder'=>'Nombre completo','type'=>'text','autocomplete'=>'new-password','required'=>'required']); ?>
