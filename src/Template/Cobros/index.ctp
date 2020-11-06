@@ -77,7 +77,6 @@
                         <th>Total Pagar</th>
                         <th>Sede</th>
                         <th>Estado</th>
-                        <th>Referencia</th>
                         <th>Creado</th>
                         <th>Fecha de Pago</th>
                         <th>Acción</th>
@@ -104,7 +103,6 @@
                                 <span class="label label-lg label-danger label-inline mr-2">Anulado</span>
                             <?php endif; ?>
                         </td>
-                        <td><?= h($cobro->referencia) ?></td>
                         <td><?= h($cobro->created) ?></td>
                         <td>
                             <?php
@@ -117,7 +115,7 @@
                             </td>
                         <td>
                             <?php if($cobro->status!=5): ?>
-                                <a href="<?= $this->Url->build(['controller' => 'Cobros', 'action' => 'view',$cobro->id]) ?>" class="btn btn-sm btn-clean btn-icon" title="Ver pago"><i class="la la-eye"></i></a>
+                                <a href="<?= $this->Url->build(['controller' => 'Cobros', 'action' => 'view',$cobro->id]) ?>" class="btn btn-sm btn-clean btn-icon" title="Ver / Pagar"><i class="la la-eye"></i></a>
                             <?php endif; ?>
                         </td>
                     </tr>

@@ -100,7 +100,7 @@
                                 <?php echo $this->Form->control('referencia',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Nro. de referencia']); ?>
                             </div>
                             <div class="form-group">
-                                <label for="img" >Materias a cursar:</label>
+                                <label for="img" >Cargar comprobante:</label>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="img" name="img" accept="image/png, image/jpeg">
                                     <label class="custom-file-label" for="customFile">Elegir Imagen</label>

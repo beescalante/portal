@@ -20,7 +20,7 @@ class CobrosController extends AppController
         //estudiante rol=3
         if(isset($user['role_id']) and $user['role_id'] === 3)
         {
-            if(in_array($this->request->action, ['index','view','reportar']))
+            if(in_array($this->request->action, ['index','view','reportar','tarjeta']))
             {
                 return true;
             }else{
@@ -69,6 +69,88 @@ class CobrosController extends AppController
             $student=$this->Estudiantes->get($this->Auth->user('estudiante_id'));
 
             $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$student->cedula,'status'=>1]]);
+
+            if($cobro->status==1 && $cobro->tipo=="Tarjeta"){
+                $this->loadModel('Paymes');
+                //SEDES
+                if($this->Auth->user('sede_id')==1 && $cobro->diffe==1){
+                    $payme = $this->Paymes->get(1);
+                }
+                //MARIROCA
+                elseif($this->Auth->user('sede_id')==1 && $cobro->diffe==2){
+                    $payme = $this->Paymes->get(2);
+                }
+                //CARTAGO
+                elseif($this->Auth->user('sede_id')==3){
+                    $payme = $this->Paymes->get(3);
+                }
+                //PUNTARENAS
+                elseif($this->Auth->user('sede_id')==4){
+                    $payme = $this->Paymes->get(4);
+                }
+                $purchaseOperationNumber = str_pad($id, 9, "0", STR_PAD_LEFT);
+                $purchaseVerification = openssl_digest($payme->acquirerid . $payme->idcommerce . $purchaseOperationNumber . $payme->pasarela, 'sha512');
+
+                $url = 'https://integracion.alignetsac.com/VPOS2/rest/operationAcquirer/consulte';
+
+                $dataRest = '{"idAcquirer":"'.$payme->acquirerid.'","idCommerce":"'.$payme->idcommerce.'","operationNumber":"'.$purchaseOperationNumber.'","purchaseVerification":"'.$purchaseVerification.'"}';
+
+                $header = array('Content-Type: application/json');
+            
+                //Consumo del servicio Rest
+                $curl = curl_init();
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $dataRest);
+                curl_setopt($curl, CURLOPT_URL, $url);
+                curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+                $response = curl_exec($curl);
+                $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                curl_close($curl);
+                
+                //Imprimir respuesta
+                //echo 'Respuesta: ' . $response;
+                //errorCode
+                //
+                $jsonData = json_decode($response,true);
+                $errorCode= $jsonData['errorCode'];
+
+                if($errorCode=='7003'){
+
+                }else{
+                    if($jsonData['result']==1 || $jsonData['result']==2 || $jsonData['result']==4 || $jsonData['result']==6 || $jsonData['result']==9 || $jsonData['result']==10 || $jsonData['result']==11 || $jsonData['result']==13 || $jsonData['result']==14){
+                        $status=4;
+                    }elseif($jsonData['result']==0 || $jsonData['result']==7 || $jsonData['result']==8 || $jsonData['result']==12 || $jsonData['result']==15 || $jsonData['result']==16){
+                        $status=3;
+                    }elseif($jsonData['result']==3 || $jsonData['result']==5){
+                        $status=2;
+                    }
+
+                    $cobro->fechapago=date('Y-m-d H:i:s');
+                    $cobro->status=$status;
+                    $cobro->shippingfirstname= $jsonData['shippingFirstName'];
+                    $cobro->shippinglastname= $jsonData['shippingLastName'];
+                    $cobro->shippingemail= $jsonData['shippingEMail'];
+                    $cobro->shippingaddress= $jsonData['shippingAddress'];
+                    $cobro->shippingzip= $jsonData['shippingZIP'];
+                    $cobro->shippingcity= $jsonData['shippingCity'];
+                    $cobro->shippingstate= $jsonData['shippingState'];
+                    $cobro->authenticationeci= $jsonData['authenticationECI'];
+                    $cobro->authorizationcode= $jsonData['authorizationCode'];
+                    $cobro->cardnumber= $jsonData['cardNumber'];
+                    $cobro->cardtype= $jsonData['cardType'];
+                    $cobro->errorcode= $jsonData['errorCode'];
+                    $cobro->errormessage= $jsonData['errorMessage'];
+                    $cobro->result= $jsonData['result'];
+                    if ($this->Cobros->save($cobro)) {
+                        $this->Flash->success(__('El pago #'.$id.' se ha registrado exitosamente.'));
+
+                        return $this->redirect(['action' => 'view',$id]);
+                    }
+                }
+
+            }
             
             $this->set(compact('pagos'));
         }
@@ -111,6 +193,56 @@ class CobrosController extends AppController
 
         $sedes = $this->Cobros->Sedes->find('list', ['limit' => 200]);
         $this->set(compact('cobro', 'sedes'));
+    }
+
+
+    public function tarjeta($id = null)
+    {
+        $cobro = $this->Cobros->get($id, [
+            'contain' => [],
+        ]);
+        $purchaseOperationNumber = str_pad($id, 9, "0", STR_PAD_LEFT);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $cobro = $this->Cobros->patchEntity($cobro, $this->request->getData());
+            $cobro->fechapago=date('Y-m-d H:i:s');
+            $cobro->status=3;
+            if ($this->Cobros->save($cobro)) {
+                $this->Flash->success(__('El pago #'.$cobro->id.' se ha registrado exitosamente.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('El pago #'.$cobro->id.' no se ha registrado. Por favor, intente más tarde.'));
+        }
+
+        if($this->Auth->user('role_id')==3){
+            $this->loadModel('Estudiantes');
+            $student=$this->Estudiantes->get($this->Auth->user('estudiante_id'));
+
+            $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$student->cedula,'status'=>1]]);
+            
+            $this->set(compact('pagos'));
+        }
+
+        $this->loadModel('Paymes');
+        //SEDES
+        if($this->Auth->user('sede_id')==1 && $cobro->diffe==1){
+            $payme = $this->Paymes->get(1);
+        }
+        //MARIROCA
+        elseif($this->Auth->user('sede_id')==1 && $cobro->diffe==2){
+            $payme = $this->Paymes->get(2);
+        }
+        //CARTAGO
+        elseif($this->Auth->user('sede_id')==3){
+            $payme = $this->Paymes->get(3);
+        }
+        //PUNTARENAS
+        elseif($this->Auth->user('sede_id')==4){
+            $payme = $this->Paymes->get(4);
+        }
+
+        $purchaseVerification = openssl_digest($payme->acquirerid . $payme->idcommerce . $purchaseOperationNumber . $cobro->pagar . $payme->purchasecurrencycode . $payme->pasarela, 'sha512');
+        $this->set(compact('cobro', 'payme','purchaseVerification','purchaseOperationNumber'));
     }
 
 

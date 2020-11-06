@@ -88,6 +88,19 @@
                                 <span class="font-weight-bolder mb-2">CONCEPTO</span>
                                 <span class="opacity-70"><?php echo $cobro->concepto; ?></span>
                             </div>
+                            <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">OBSERVACION</span>
+                                <span class="opacity-70">
+                                    <?php 
+                                        if($cobro->comentario){
+                                            echo $cobro->comentario; 
+                                        }else{
+                                            echo "S/O";
+                                        }
+                                    ?>
+                                        
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -152,7 +165,7 @@
                                         <td>
                                             <?php 
                                                 if($cobro->fechapago){
-                                                    echo $cobro->fechapago; 
+                                                    echo date("d/m/Y h:i:sa", strtotime($cobro->fechapago)); 
                                                 }else{
                                                     echo "Pago sin realizarse";
                                                 }
@@ -162,6 +175,38 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <?php if($cobro->status==2 && $cobro->tipo=="Transferencia  Depósito Bancario"): ?>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="font-weight-bold text-muted  text-uppercase">REFERENCIA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="font-weight-bolder">
+                                            <td><?php echo $cobro->referencia; ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            <?php elseif($cobro->status==2 && $cobro->tipo=="Tarjeta"): ?>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="font-weight-bold text-muted  text-uppercase">COD AUT</th>
+                                            <th class="font-weight-bold text-muted  text-uppercase">TARJETA</th>
+                                            <th class="font-weight-bold text-muted  text-uppercase">TIPO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="font-weight-bolder">
+                                            <td><?php echo $cobro->authorizationcode; ?></td>
+                                            <td><?php echo $cobro->cardnumber; ?></td>
+                                            <td><?php echo $cobro->cardtype; ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            <?php else: ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -177,6 +222,8 @@
                                 <?php echo $this->Html->link('Ver Comprobante', '/files/cobros/img/'.$cobro->img_dir.'/'.$cobro->img.'', ['target'=>'_blank', 'class'=>'btn btn-light-primary font-weight-bold']);?>
                             <?php elseif($cobro->status==3 && $cobro->tipo=="Transferencia Depósito Bancario"): ?>
                                 <?php echo $this->Html->link('Ver Comprobante', '/files/cobros/img/'.$cobro->img_dir.'/'.$cobro->img.'', ['target'=>'_blank', 'class'=>'btn btn-light-primary font-weight-bold']);?>
+                            <?php elseif($cobro->status==1 && $cobro->tipo=="Tarjeta"): ?>
+                                <?= $this->Html->link(('Reportar Pago'),['controller'=>'Cobros','action' => 'tarjeta',$cobro->id],['class' => 'btn btn-primary font-weight-bold']) ?>
                             <?php endif;?>
                         </div>
                     </div>
