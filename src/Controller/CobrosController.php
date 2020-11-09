@@ -116,7 +116,7 @@ class CobrosController extends AppController
                 $jsonData = json_decode($response,true);
                 $errorCode= $jsonData['errorCode'];
 
-                if($errorCode=='7003'){
+                if($errorCode=='7003' || $errorCode=='2300'){
 
                 }else{
                     if($jsonData['result']==1 || $jsonData['result']==2 || $jsonData['result']==4 || $jsonData['result']==6 || $jsonData['result']==9 || $jsonData['result']==10 || $jsonData['result']==11 || $jsonData['result']==13 || $jsonData['result']==14){
