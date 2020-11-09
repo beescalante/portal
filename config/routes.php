@@ -78,6 +78,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     
     $routes->connect('perfil', ['controller' => 'Users', 'action' => 'miperfild']);
     $routes->connect('mi-contrasena', ['controller' => 'Users', 'action' => 'cambiarcontrasenad']);
+    $routes->connect('realizar-pago/*', ['controller' => 'Users', 'action' => 'linkpago']);
 
     /**
      * Connect catchall routes for all controllers.

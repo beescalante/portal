@@ -40,9 +40,9 @@
                     <script>document.write(new Date().getFullYear());</script>&nbsp;&copy;&nbsp;Universidad Santa Lucía
                 </div>
                 <div class="d-flex order-1 order-sm-2 my-2">
-                    <a href="#" class="text-muted text-hover-primary">Privacidad</a>
-                    <a href="#" class="text-muted text-hover-primary ml-4">Términos</a>
-                    <a href="#" class="text-muted text-hover-primary ml-4">Soporte</a>
+                    <a href="https://portal.usl.ac.cr/politicas_privacidad_USL.pdf" class="text-muted text-hover-primary" target="_blank">Privacidad</a>
+                    <a href="https://portal.usl.ac.cr/condiciones_uso_USL.pdf" class="text-muted text-hover-primary ml-4" target="_blank">Condiciones</a>
+                    <a href="https://usl.ac.cr/soporte-general" class="text-muted text-hover-primary ml-4" target="_blank">Soporte</a>
                 </div>
             </div>
             <!--end: Aside footer for desktop-->

@@ -225,19 +225,19 @@ class CobrosController extends AppController
 
         $this->loadModel('Paymes');
         //SEDES
-        if($this->Auth->user('sede_id')==1 && $cobro->diffe==1){
+        if($cobro->sede_id==1 && $cobro->diffe==1){
             $payme = $this->Paymes->get(1);
         }
         //MARIROCA
-        elseif($this->Auth->user('sede_id')==1 && $cobro->diffe==2){
+        elseif($cobro->sede_id==1 && $cobro->diffe==2){
             $payme = $this->Paymes->get(2);
         }
         //CARTAGO
-        elseif($this->Auth->user('sede_id')==3){
+        elseif($cobro->sede_id==3){
             $payme = $this->Paymes->get(3);
         }
         //PUNTARENAS
-        elseif($this->Auth->user('sede_id')==4){
+        elseif($cobro->sede_id==4){
             $payme = $this->Paymes->get(4);
         }
 

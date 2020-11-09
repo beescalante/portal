@@ -83,7 +83,7 @@
 
                             <!-- email details -->
                             <tr>
-                                <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #c6c6c6; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                                <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #605d5d; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                     <div class="editable-text">
                                         <span class="text_container">¡Hola <?php echo $nombre;?>! Usted ha iniciado un proceso de recuperaci&oacute;n de contrase&ntilde;a en nuestro portal acad&eacute;mico. Para recuperar su contrase&ntilde;a haga clic en el siguiente botón o copie y pegue el enlace en su navegador:</span>
                                     </div>
@@ -119,7 +119,7 @@
                             </tr><!-- END buttons -->
                             <!-- email details -->
                             <tr>
-                                <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #c6c6c6; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                                <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #605d5d; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                     <div class="editable-text">
                                         <span class="text_container">Enlace: <a href="<?php echo $url; ?>"><?php echo $url; ?></a></span>
                                     </div>
@@ -127,7 +127,7 @@
                             </tr><!-- END email details -->
                             <!-- email details -->
                             <tr>
-                                <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #c6c6c6; font-size: 12px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                                <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #605d5d; font-size: 12px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                     <div class="editable-text">
                                         <span class="text_container"><br>Si usted no ha solicitado recuperar su contrase&ntilde;a, es posible que otro usuario haya ingresado su direcci&oacute;n de correo electr&oacute;nico por error mientras intenta recuperar una contrase&ntilde;a. Si usted no hizo la solicitud, haga caso omiso de este correo.</span>
                                     </div>
@@ -148,7 +148,7 @@
         <td>
             <table class="table1" width="600" align="center" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td align="center" mc:edit="text105" class="text_color_c6c6c6" style="line-height: 1;color: #c6c6c6; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                    <td align="center" mc:edit="text105" class="text_color_c6c6c6" style="line-height: 1;color: #605d5d; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                         <div class="editable-text">
                             <span class="text_container">&copy; 2020 Universidad Santa Lucía. Todos los derechos.</span>
                         </div>
@@ -158,7 +158,7 @@
                 <tr><td height="15"></td></tr>
 
                 <tr>
-                    <td align="center" mc:edit="text106" class="text_color_c6c6c6" style="line-height: 1;color: #c6c6c6; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                    <td align="center" mc:edit="text106" class="text_color_c6c6c6" style="line-height: 1;color: #605d5d; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                         <div class="editable-text">
                             <span class="text_container"><a href="https://usl.ac.cr" target="_blank">www.usl.ac.cr</a></span>
                         </div>
