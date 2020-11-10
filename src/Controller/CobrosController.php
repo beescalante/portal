@@ -113,10 +113,11 @@ class CobrosController extends AppController
                 //echo 'Respuesta: ' . $response;
                 //errorCode
                 //
+                //print_r($response);
                 $jsonData = json_decode($response,true);
                 $errorCode= $jsonData['errorCode'];
-
-                if($errorCode=='7003' || $errorCode=='2300'){
+                
+                if($errorCode=='7003'){
 
                 }else{
                     if($jsonData['result']==1 || $jsonData['result']==2 || $jsonData['result']==4 || $jsonData['result']==6 || $jsonData['result']==9 || $jsonData['result']==10 || $jsonData['result']==11 || $jsonData['result']==13 || $jsonData['result']==14){
@@ -136,7 +137,6 @@ class CobrosController extends AppController
                     $cobro->shippingzip= $jsonData['shippingZIP'];
                     $cobro->shippingcity= $jsonData['shippingCity'];
                     $cobro->shippingstate= $jsonData['shippingState'];
-                    $cobro->authenticationeci= $jsonData['authenticationECI'];
                     $cobro->authorizationcode= $jsonData['authorizationCode'];
                     $cobro->cardnumber= $jsonData['cardNumber'];
                     $cobro->cardtype= $jsonData['cardType'];
@@ -144,7 +144,7 @@ class CobrosController extends AppController
                     $cobro->errormessage= $jsonData['errorMessage'];
                     $cobro->result= $jsonData['result'];
                     if ($this->Cobros->save($cobro)) {
-                        $this->Flash->success(__('El pago #'.$id.' se ha registrado exitosamente.'));
+                        $this->Flash->success(__('El pago #'.$id.' actualizado.'));
 
                         return $this->redirect(['action' => 'view',$id]);
                     }
@@ -201,47 +201,52 @@ class CobrosController extends AppController
         $cobro = $this->Cobros->get($id, [
             'contain' => [],
         ]);
-        $purchaseOperationNumber = str_pad($id, 9, "0", STR_PAD_LEFT);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $cobro = $this->Cobros->patchEntity($cobro, $this->request->getData());
-            $cobro->fechapago=date('Y-m-d H:i:s');
-            $cobro->status=3;
-            if ($this->Cobros->save($cobro)) {
-                $this->Flash->success(__('El pago #'.$cobro->id.' se ha registrado exitosamente.'));
+        if($cobro->status==1){
 
-                return $this->redirect(['action' => 'index']);
+            $purchaseOperationNumber = str_pad($id, 9, "0", STR_PAD_LEFT);
+            if ($this->request->is(['patch', 'post', 'put'])) {
+                $cobro = $this->Cobros->patchEntity($cobro, $this->request->getData());
+                $cobro->fechapago=date('Y-m-d H:i:s');
+                $cobro->status=3;
+                if ($this->Cobros->save($cobro)) {
+                    $this->Flash->success(__('El pago #'.$cobro->id.' se ha registrado exitosamente.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('El pago #'.$cobro->id.' no se ha registrado. Por favor, intente más tarde.'));
             }
-            $this->Flash->error(__('El pago #'.$cobro->id.' no se ha registrado. Por favor, intente más tarde.'));
-        }
 
-        if($this->Auth->user('role_id')==3){
-            $this->loadModel('Estudiantes');
-            $student=$this->Estudiantes->get($this->Auth->user('estudiante_id'));
+            if($this->Auth->user('role_id')==3){
+                $this->loadModel('Estudiantes');
+                $student=$this->Estudiantes->get($this->Auth->user('estudiante_id'));
 
-            $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$student->cedula,'status'=>1]]);
-            
-            $this->set(compact('pagos'));
-        }
+                $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$student->cedula,'status'=>1]]);
+                
+                $this->set(compact('pagos'));
+            }
 
-        $this->loadModel('Paymes');
-        //SEDES
-        if($cobro->sede_id==1 && $cobro->diffe==1){
-            $payme = $this->Paymes->get(1);
-        }
-        //MARIROCA
-        elseif($cobro->sede_id==1 && $cobro->diffe==2){
-            $payme = $this->Paymes->get(2);
-        }
-        //CARTAGO
-        elseif($cobro->sede_id==3){
-            $payme = $this->Paymes->get(3);
-        }
-        //PUNTARENAS
-        elseif($cobro->sede_id==4){
-            $payme = $this->Paymes->get(4);
-        }
+            $this->loadModel('Paymes');
+            //SEDES
+            if($cobro->sede_id==1 && $cobro->diffe==1){
+                $payme = $this->Paymes->get(1);
+            }
+            //MARIROCA
+            elseif($cobro->sede_id==1 && $cobro->diffe==2){
+                $payme = $this->Paymes->get(2);
+            }
+            //CARTAGO
+            elseif($cobro->sede_id==3){
+                $payme = $this->Paymes->get(3);
+            }
+            //PUNTARENAS
+            elseif($cobro->sede_id==4){
+                $payme = $this->Paymes->get(4);
+            }
 
-        $purchaseVerification = openssl_digest($payme->acquirerid . $payme->idcommerce . $purchaseOperationNumber . $cobro->pagar . $payme->purchasecurrencycode . $payme->pasarela, 'sha512');
+            $purchaseVerification = openssl_digest($payme->acquirerid . $payme->idcommerce . $purchaseOperationNumber . $cobro->pagar . $payme->purchasecurrencycode . $payme->pasarela, 'sha512');
+        }else{
+            return $this->redirect(['action' => 'view',$id]);
+        }
         $this->set(compact('cobro', 'payme','purchaseVerification','purchaseOperationNumber'));
     }
 
