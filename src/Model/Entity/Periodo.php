@@ -25,10 +25,7 @@ class Periodo extends Entity
      * @var array
      */
     protected $_accessible = [
-        'nombre' => true,
-        'status' => true,
-        'matriculacion' => true,
-        'comentario' => true,
-        'fecha' => true,
+        '*' => true,
+        'id' => false
     ];
 }

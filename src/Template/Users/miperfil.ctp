@@ -188,20 +188,14 @@
                                     </span>                        
                                 </div>
                                 <div class="alert-text font-weight-bold">
-                                    Escriba cuidadodasamente todos sus datos. Algunos datos no podrá editarlos, para cambiarlos deberá solicitarlo directamente en la <?php echo $estudiante->sede->nombre; ?> o a través del formulario de soporte.
+                                    Escriba cuidadodasamente todos sus datos. Algunos datos no podrá editarlos, para cambiarlos deberá solicitarlo directamente al personal de plataforma de <?php echo $estudiante->sede->nombre; ?> o a través del formulario de soporte.
                                 </div>
                                 <div class="alert-close">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true"><i class="ki ki-close"></i></span>
                                     </button>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-xl-3 col-lg-3 col-form-label text-alert">Cédula</label>
-                                <div class="col-lg-9 col-xl-6">
-                                    <?php echo $this->Form->control('cedula',['label'=>false,'class'=>'form-control form-control-lg form-control-solid mb-2','placeholder'=>'Número de Cédula','type'=>'text','autocomplete'=>'new-password','required'=>'required']); ?>
-                                </div>
-                            </div>
+                            </div>>
                             <div class="form-group row">
                                 <label class="col-xl-3 col-lg-3 col-form-label text-alert">Nombre</label>
                                 <div class="col-lg-9 col-xl-6">

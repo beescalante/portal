@@ -33,17 +33,7 @@ class Docente extends Entity
      * @var array
      */
     protected $_accessible = [
-        'cedula' => true,
-        'nombre' => true,
-        'apellido1' => true,
-        'apellido2' => true,
-        'emailp' => true,
-        'emailu' => true,
-        'telefono' => true,
-        'grado_id' => true,
-        'sede_id' => true,
-        'grado' => true,
-        'sede' => true,
-        'users' => true,
+        '*' => true,
+        'id' => false
     ];
 }

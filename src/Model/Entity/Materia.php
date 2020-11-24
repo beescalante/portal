@@ -29,13 +29,7 @@ class Materia extends Entity
      * @var array
      */
     protected $_accessible = [
-        'codigo' => true,
-        'nombre' => true,
-        'bloque' => true,
-        'creditos' => true,
-        'carrera_id' => true,
-        'requisitos' => true,
-        'carrera' => true,
-        'solicitudes' => true,
+        '*' => true,
+        'id' => false
     ];
 }

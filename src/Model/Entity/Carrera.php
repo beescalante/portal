@@ -7,7 +7,7 @@ use Cake\ORM\Entity;
  * Carrera Entity
  *
  * @property int $id
- * @property string $carrera
+ * @property string $nombre
  * @property string|null $grado
  * @property int|null $bloques
  * @property string|null $director
@@ -33,17 +33,7 @@ class Carrera extends Entity
      * @var array
      */
     protected $_accessible = [
-        'carrera' => true,
-        'grado' => true,
-        'bloques' => true,
-        'director' => true,
-        'escuela_id' => true,
-        'apcarrera' => true,
-        'applan' => true,
-        'escuela' => true,
-        'estudiantes' => true,
-        'materias' => true,
-        'solicitudes' => true,
-        'sedes' => true,
+        '*' => true,
+        'id' => false
     ];
 }

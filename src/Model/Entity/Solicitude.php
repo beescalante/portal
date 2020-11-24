@@ -34,18 +34,7 @@ class Solicitude extends Entity
      * @var array
      */
     protected $_accessible = [
-        'user_id' => true,
-        'cedula' => true,
-        'estudiante_id' => true,
-        'carrera_id' => true,
-        'sede_id' => true,
-        'periodo' => true,
-        'created' => true,
-        'status' => true,
-        'user' => true,
-        'estudiante' => true,
-        'carrera' => true,
-        'sede' => true,
-        'materias' => true,
+        '*' => true,
+        'id' => false
     ];
 }

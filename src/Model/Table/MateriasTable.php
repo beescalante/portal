@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Materias Model
  *
  * @property \App\Model\Table\CarrerasTable&\Cake\ORM\Association\BelongsTo $Carreras
+ * @property &\Cake\ORM\Association\HasMany $Grupos
  * @property \App\Model\Table\SolicitudesTable&\Cake\ORM\Association\BelongsToMany $Solicitudes
  *
  * @method \App\Model\Entity\Materia get($primaryKey, $options = [])
@@ -39,6 +40,9 @@ class MateriasTable extends Table
 
         $this->belongsTo('Carreras', [
             'foreignKey' => 'carrera_id',
+        ]);
+        $this->hasMany('Grupos', [
+            'foreignKey' => 'materia_id',
         ]);
         $this->belongsToMany('Solicitudes', [
             'foreignKey' => 'materia_id',

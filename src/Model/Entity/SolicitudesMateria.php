@@ -25,9 +25,7 @@ class SolicitudesMateria extends Entity
      * @var array
      */
     protected $_accessible = [
-        'solicitude_id' => true,
-        'materia_id' => true,
-        'solicitude' => true,
-        'materia' => true,
+        '*' => true,
+        'id' => false
     ];
 }

@@ -4,31 +4,27 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Estudiante Entity
+ * Grupo Entity
  *
  * @property int $id
- * @property string $cedula
- * @property string $nombre
- * @property string $apellido1
- * @property string $apellido2
- * @property string $emailp
- * @property string $emailu
- * @property string $telefono
- * @property string $sexo
- * @property int $nacionalidade_id
- * @property \Cake\I18n\FrozenDate $nacimiento
  * @property int $sede_id
+ * @property string $codigo
+ * @property int $materia_id
  * @property int $carrera_id
- * @property bool $conape
- * @property string $condicion
+ * @property string $periodo
+ * @property string $ceduladoc
+ * @property int $docente_id
+ * @property string $horario
+ * @property \Cake\I18n\FrozenDate $created
+ * @property string|null $equipo
  *
- * @property \App\Model\Entity\Nacionalidade $nacionalidade
  * @property \App\Model\Entity\Sede $sede
+ * @property \App\Model\Entity\Materia $materia
  * @property \App\Model\Entity\Carrera $carrera
- * @property \App\Model\Entity\Solicitude[] $solicitudes
- * @property \App\Model\Entity\User[] $users
+ * @property \App\Model\Entity\Docente $docente
+ * @property \App\Model\Entity\Evaluacione[] $evaluaciones
  */
-class Estudiante extends Entity
+class Grupo extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

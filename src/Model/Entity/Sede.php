@@ -31,15 +31,7 @@ class Sede extends Entity
      * @var array
      */
     protected $_accessible = [
-        'nombre' => true,
-        'horario' => true,
-        'telefono' => true,
-        'direccion' => true,
-        'correo' => true,
-        'cobros' => true,
-        'estudiantes' => true,
-        'solicitudes' => true,
-        'users' => true,
-        'carreras' => true,
+        '*' => true,
+        'id' => false
     ];
 }

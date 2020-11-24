@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\GradosTable&\Cake\ORM\Association\BelongsTo $Grados
  * @property \App\Model\Table\SedesTable&\Cake\ORM\Association\BelongsTo $Sedes
+ * @property &\Cake\ORM\Association\HasMany $Grupos
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\HasMany $Users
  *
  * @method \App\Model\Entity\Docente get($primaryKey, $options = [])
@@ -44,6 +45,9 @@ class DocentesTable extends Table
         $this->belongsTo('Sedes', [
             'foreignKey' => 'sede_id',
             'joinType' => 'INNER',
+        ]);
+        $this->hasMany('Grupos', [
+            'foreignKey' => 'docente_id',
         ]);
         $this->hasMany('Users', [
             'foreignKey' => 'docente_id',

@@ -95,8 +95,12 @@ class UsersController extends AppController
 
             $this->loadModel('Cobros');
             $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$student->cedula,'status'=>1]]);
+
+            //evaluaciones
+            $this->loadModel('Evaluaciones');
+            $evaluaciones1=$this->Evaluaciones->find('all',['conditions'=>['Evaluaciones.email'=>$this->Auth->user('email')]]);
             
-            $this->set(compact('pagos'));
+            $this->set(compact('pagos','evaluaciones1'));
         }
     }
 

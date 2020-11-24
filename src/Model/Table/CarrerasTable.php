@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\EscuelasTable&\Cake\ORM\Association\BelongsTo $Escuelas
  * @property \App\Model\Table\EstudiantesTable&\Cake\ORM\Association\HasMany $Estudiantes
+ * @property &\Cake\ORM\Association\HasMany $Grupos
  * @property \App\Model\Table\MateriasTable&\Cake\ORM\Association\HasMany $Materias
  * @property \App\Model\Table\SolicitudesTable&\Cake\ORM\Association\HasMany $Solicitudes
  * @property \App\Model\Table\SedesTable&\Cake\ORM\Association\BelongsToMany $Sedes
@@ -46,6 +47,9 @@ class CarrerasTable extends Table
         $this->hasMany('Estudiantes', [
             'foreignKey' => 'carrera_id',
         ]);
+        $this->hasMany('Grupos', [
+            'foreignKey' => 'carrera_id',
+        ]);
         $this->hasMany('Materias', [
             'foreignKey' => 'carrera_id',
         ]);
@@ -72,10 +76,10 @@ class CarrerasTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('carrera')
-            ->maxLength('carrera', 255)
-            ->requirePresence('carrera', 'create')
-            ->notEmptyString('carrera');
+            ->scalar('nombre')
+            ->maxLength('nombre', 255)
+            ->requirePresence('nombre', 'create')
+            ->notEmptyString('nombre');
 
         $validator
             ->scalar('grado')

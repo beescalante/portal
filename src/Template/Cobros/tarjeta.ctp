@@ -94,29 +94,43 @@
                 <?= $this->Flash->render() ?>
                 <div class="card card-custom">
                     <!--begin::Form-->
+                    <?php 
+                        $acquirerId = $payme->acquirerid;
+                        $idCommerce = $payme->idcommerce;
+                        $purchaseOperationNumber = str_pad($cobro->id, 9, "0", STR_PAD_LEFT);
+                        $purchaseAmount = $cobro->pagar.'00';
+                        $purchaseCurrencyCode = $payme->purchasecurrencycode;
+                        
+                        //Clave SHA-2 de VPOS2
+                        $claveSecreta = $payme->pasarela;
+
+                        $purchaseVerification = openssl_digest($acquirerId . $idCommerce . $purchaseOperationNumber . $purchaseAmount . $purchaseCurrencyCode . $claveSecreta, 'sha512');
+                    ?>
                     <?= $this->Form->create(null,['class'=>'form alignet-form-vpos2','id'=>'f1']) ?>
-                        <input type="hidden" name ="acquirerId" value="<?php echo $payme->acquirerid; ?>" />
-                        <input type="hidden" name ="idCommerce" value="<?php echo $payme->idcommerce; ?>" />
+                        <input type="hidden" name ="acquirerId" value="<?php echo $acquirerId; ?>" />
+                        <input type="hidden" name ="idCommerce" value="<?php echo $idCommerce; ?>" />
                         <input type="hidden" name="purchaseOperationNumber" value="<?php echo $purchaseOperationNumber; ?>" />
-                        <input type="hidden" name="purchaseAmount" value="<?php echo $cobro->pagar; ?>" />
-                        <input type="hidden" name="purchaseCurrencyCode" value="<?php echo $payme->purchasecurrencycode; ?>" />
+                        <input type="hidden" name="purchaseAmount" value="<?php echo $purchaseAmount; ?>" />
+                        <input type="hidden" name="purchaseCurrencyCode" value="<?php echo $purchaseCurrencyCode; ?>" />
                         <input type="hidden" name="language" value="<?php echo $payme->language; ?>" />
                         <input type="hidden" name="shippingCountry" value="<?php echo $payme->shippingcountry; ?>" />
                         <input type="hidden" name="descriptionProducts" value="<?php echo $cobro->concepto; ?>" />
+                        <input type="hidden" name="userCommerce" value="TestBeatriz" />
+                        <input type="hidden" name="reserved1" value="ninguno" />
+                        <input type="hidden" name="userCodePayme" value="<?php echo $cobro->cedula; ?>" />
                         <input type="hidden" name="programmingLanguage" value="<?php echo $payme->programminglanguage; ?>" />
-                        <input type="hidden" name="purchaseVerification" value="<?php echo $purchaseVerification; ?>" />
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nombre del Tarjetahabiente</label>
-                                        <?php echo $this->Form->control('shippingfirstname',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Nombre','name'=>'shippingFirstName']); ?>
+                                        <?php echo $this->Form->control('shippingfirstname',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Nombre','name'=>'shippingFirstName','autocomplete'=>'off']); ?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Apellido del Tarjetahabiente:</label>
-                                        <?php echo $this->Form->control('shippinglastname',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Apellido','name'=>'shippingLastName']); ?>
+                                        <?php echo $this->Form->control('shippinglastname',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Apellido','name'=>'shippingLastName','autocomplete'=>'off']); ?>
                                     </div>
                                 </div>
                             </div>
@@ -124,13 +138,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Correo del Tarjetahabiente:</label>
-                                        <?php echo $this->Form->control('shippingemail',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Correo','name'=>'shippingEmail']); ?>
+                                        <?php echo $this->Form->control('shippingemail',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Correo','name'=>'shippingEmail','autocomplete'=>'off']); ?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dirección del Tarjetahabiente:</label>
-                                        <?php echo $this->Form->control('shippingaddress',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba la Dirección','name'=>'shippingAddress']); ?>
+                                        <?php echo $this->Form->control('shippingaddress',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba la Dirección','name'=>'shippingAddress','autocomplete'=>'off']); ?>
                                     </div>
                                 </div>
                             </div>
@@ -138,21 +152,22 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Código Postal</label>
-                                        <?php echo $this->Form->control('shippingzip',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Código','name'=>'shippingZIP']); ?>
+                                        <?php echo $this->Form->control('shippingzip',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Código','name'=>'shippingZIP','autocomplete'=>'off']); ?>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Ciudad:</label>
-                                        <?php echo $this->Form->control('shippingcity',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba la Ciudad','name'=>'shippingCity']); ?>
+                                        <?php echo $this->Form->control('shippingcity',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba la Ciudad','name'=>'shippingCity','autocomplete'=>'off']); ?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Provincia:</label>
-                                        <?php echo $this->Form->control('shippingstate',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba la Provincia','name'=>'shippingState']); ?>
+                                        <?php echo $this->Form->control('shippingstate',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba la Provincia','name'=>'shippingState','autocomplete'=>'off']); ?>
                                     </div>
                                 </div>
+                                <input type="hidden" name="purchaseVerification" value="<?php echo $purchaseVerification; ?>" />
                             </div>
                         </div>
                         <div class="card-footer">

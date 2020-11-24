@@ -13,19 +13,9 @@
             <div class="d-flex align-items-baseline flex-wrap mr-5">
                 <!--begin::Page Title-->
                 <h5 class="text-dark font-weight-bold my-1 mr-5">
-                    Matrícula
+                    Evaluaciones Docentes
                 </h5>
                 <!--end::Page Title-->
-
-                <!--begin::Breadcrumb-->
-                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-                    <li class="breadcrumb-item">
-                        <a href="" class="text-muted">
-                            Pagos de matrícula                         
-                        </a>
-                    </li>
-                </ul>
-                <!--end::Breadcrumb-->
             </div>
             <!--end::Page Heading-->
         </div>
@@ -54,7 +44,7 @@
                 </span>   
             </div>
             <div class="alert-text">
-                Para realizar o reportar los pagos en línea de su matrícula, abonos, letras de cambio o trámites deberá haberse comunicado con su sede para que el personal de cajas le genere el cobro a su cuenta. Una vez generado el cobro, usted podrá verlo en la siguiente lista y gestionarlo.
+                En la Universidad Santa Lucía nos aseguramos de mantener la confidencialidad de las respuestas a cada una de sus evaluaciones, todas las evaluaciones son anónimas y servirán para que nuestra institución evalue aspectos de calidad académica en nuestra comunidad docente.
             </div>
         </div>
         <!-- end::Notice -->
@@ -63,7 +53,7 @@
             <div class="card-header">
                 <div class="card-title">
                     <span class="card-icon"><i class="flaticon2-favourite text-primary"></i></span>
-                    <h3 class="card-label">Mis pagos</h3>
+                    <h3 class="card-label">Evaluaciones pendientes</h3>
                 </div>
             </div>
             <div class="card-body">
@@ -71,49 +61,39 @@
                 <table class="table table-bordered table-hover table-checkable dataTable no-footer dtr-inline" id="kt_datatable" style="margin-top: 13px !important">
                     <thead>
                         <tr>
-                        <th>Nro.Cobro</th>
-                        <th>Cédula</th>
-                        <th>Concepto</th>
-                        <th>Total Pagar</th>
-                        <th>Sede</th>
-                        <th>Tipo</th>
-                        <th>Estado</th>
-                        <th>Fecha</th>
-                        <th>Acción</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($cobros as $cobro): ?>
-                    <tr>
-                        <td><?= h($cobro->id) ?></td>
-                        <td><?= h($cobro->cedula) ?></td>
-                        <td><?= h($cobro->concepto) ?></td>
-                        <td><?php echo $this->Number->format($cobro->pagar, ['places' => 2,'before' => '₡']) ?></td>
-                        <td><?= h($cobro->sede->nombre) ?></td>
-                        <td><?= h($cobro->tipo) ?></td>
-                        <td>
-                            <?php if($cobro->status==1): ?>
-                                <span class="label label-lg label-warning label-inline mr-2">Pendiente</span>
-                            <?php elseif($cobro->status==2):?>
-                                <span class="label label-lg label-success label-inline mr-2">Aceptado</span>
-                            <?php elseif($cobro->status==3):?>
-                                <span class="label label-lg label-info label-inline mr-2">Revisión</span>
-                            <?php elseif($cobro->status==4):?>
-                                <span class="label label-lg label-danger label-inline mr-2">Fallido</span>
-                            <?php else: ?>
-                                <span class="label label-lg label-danger label-inline mr-2">Anulado</span>
-                            <?php endif; ?>
-                        </td>
-                        <td><?= h($cobro->created) ?></td>
-                        <td>
-                            <?php if($cobro->status!=5): ?>
-                                <a href="<?= $this->Url->build(['controller' => 'Cobros', 'action' => 'view',$cobro->id]) ?>" class="btn btn-sm btn-clean btn-icon" title="Ver / Pagar"><i class="la la-eye"></i></a>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                            <th>Nro.</th>
+                            <th>Periodo</th>
+                            <th>Materia</th>
+                            <th>Docente</th>
+                            <th>Horario</th>
+                            <th>Contestar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if($evaluaciones->count()>0): ?>
+                            <?php foreach ($evaluaciones as $evaluacion): ?>
+                            <tr>
+                                <td>
+                                    <?= h($evaluacion->id) ?>
+                                </td>
+                                <td><?= h($evaluacion->grupo->periodo) ?></td>
+                                <td><?= h($evaluacion->grupo->materia->nombre) ?></td>
+                                <td><?= h($evaluacion->grupo->docente->nombre." ".$evaluacion->grupo->docente->apellido1) ?></td>
+                                <td><?= h($evaluacion->grupo->horario) ?></td>
+                                <td>
+                                   <a href="<?= $this->Url->build(['controller' => 'Evaluaciones', 'action' => 'edit',$evaluacion->id]) ?>" class="btn btn-icon btn-success btn-sm mr-2" title="Contestar"><i class="fas fa-edit"></i></a>  
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="8">
+                                    No hay evaluaciones pendientes
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -123,7 +103,7 @@
 $(document).ready(function() {
     $('#kt_datatable').DataTable({
         "language": {
-            "lengthMenu": "Mostrar _MENU_ solicitudes por página",
+            "lengthMenu": "Mostrar _MENU_ evaluaciones por página",
             "zeroRecords": "No hay registros que coincidan con esta búsqueda",
             "info": "Mostrando página _PAGE_ de _PAGES_",
             "infoEmpty": "No hay registros válidos",
@@ -141,8 +121,9 @@ $(document).ready(function() {
         ],
         "processing": true,
         "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todo"] ],
-        "pageLength": 25
+        "pageLength": 25,
+        "order": false
     });
 
-} );   
+} );
 </script>

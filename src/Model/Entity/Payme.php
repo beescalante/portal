@@ -28,13 +28,7 @@ class Payme extends Entity
      * @var array
      */
     protected $_accessible = [
-        'nombre' => true,
-        'acquirerid' => true,
-        'idcommerce' => true,
-        'purchasecurrencycode' => true,
-        'language' => true,
-        'programminglanguage' => true,
-        'pasarela' => true,
-        'wallet' => true,
+        '*' => true,
+        'id' => false
     ];
 }

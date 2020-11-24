@@ -80,6 +80,10 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('mi-contrasena', ['controller' => 'Users', 'action' => 'cambiarcontrasenad']);
     $routes->connect('realizar-pago/*', ['controller' => 'Users', 'action' => 'linkpago']);
 
+    $routes->connect('evaluaciones/', ['controller' => 'Evaluaciones', 'action' => 'index']);
+    $routes->connect('evaluaciones/contestar/*', ['controller' => 'Evaluaciones', 'action' => 'edit']);
+
+
     /**
      * Connect catchall routes for all controllers.
      *

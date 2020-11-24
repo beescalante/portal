@@ -130,3 +130,32 @@
     </div>
    <!--end::Container-->
 </div>
+<?php $evblock = $evaluaciones1->count(); ?>
+<?php if($evaluaciones1->count()>0): ?>
+	<div class="modal fade" id="blockEv"  tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="exampleModalLabel">Alerta: Evaluación Docente</h5>
+	            </div>
+	            <div class="modal-body">
+	                Nuestra prioridad es ofrecerle a nuestros estudiantes educación de excelente calidad, por esta razón le solicitamos nos ayude a realizar las evaluaciones de sus docentes para este cuatrimestre. 
+	                <br><br>
+	                <a href="<?= $this->Url->build(['controller' => 'Evaluaciones', 'action' => 'index']) ?>" class="btn btn-primary font-weight-bold">Realizar evaluaciones</a>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+<?php endif; ?>
+
+<script>
+//MODAL DE PRIMER INICIO
+var evblock = <?php echo json_encode($evblock); ?>;
+if (evblock>0) {
+    $("#blockEv").modal({
+        "backdrop"  : "static",
+        "keyboard"  : false,
+        "show"      : true
+    });
+}else{}
+</script>

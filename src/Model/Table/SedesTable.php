@@ -10,7 +10,9 @@ use Cake\Validation\Validator;
  * Sedes Model
  *
  * @property \App\Model\Table\CobrosTable&\Cake\ORM\Association\HasMany $Cobros
+ * @property &\Cake\ORM\Association\HasMany $Docentes
  * @property \App\Model\Table\EstudiantesTable&\Cake\ORM\Association\HasMany $Estudiantes
+ * @property &\Cake\ORM\Association\HasMany $Grupos
  * @property \App\Model\Table\SolicitudesTable&\Cake\ORM\Association\HasMany $Solicitudes
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\HasMany $Users
  * @property \App\Model\Table\CarrerasTable&\Cake\ORM\Association\BelongsToMany $Carreras
@@ -43,7 +45,13 @@ class SedesTable extends Table
         $this->hasMany('Cobros', [
             'foreignKey' => 'sede_id',
         ]);
+        $this->hasMany('Docentes', [
+            'foreignKey' => 'sede_id',
+        ]);
         $this->hasMany('Estudiantes', [
+            'foreignKey' => 'sede_id',
+        ]);
+        $this->hasMany('Grupos', [
             'foreignKey' => 'sede_id',
         ]);
         $this->hasMany('Solicitudes', [

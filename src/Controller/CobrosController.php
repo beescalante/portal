@@ -63,7 +63,6 @@ class CobrosController extends AppController
         $cobro = $this->Cobros->get($id, [
             'contain' => ['Sedes'],
         ]);
-
         if($this->Auth->user('role_id')==3){
             $this->loadModel('Estudiantes');
             $student=$this->Estudiantes->get($this->Auth->user('estudiante_id'));
@@ -73,19 +72,25 @@ class CobrosController extends AppController
             if($cobro->status==1 && $cobro->tipo=="Tarjeta"){
                 $this->loadModel('Paymes');
                 //SEDES
-                if($this->Auth->user('sede_id')==1 && $cobro->diffe==1){
-                    $payme = $this->Paymes->get(1);
-                }
-                //MARIROCA
-                elseif($this->Auth->user('sede_id')==1 && $cobro->diffe==2){
+                if($cobro->sede_id==1 && $cobro->diffe==1){
                     $payme = $this->Paymes->get(2);
                 }
+                //MARIROCA
+                elseif($cobro->sede_id==1 && $cobro->diffe==2){
+                    $payme = $this->Paymes->get(1);
+                }
+                elseif($cobro->sede_id==5){
+                    $payme = $this->Paymes->get(1);
+                }
+                elseif($cobro->sede_id==7){
+                    $payme = $this->Paymes->get(1);
+                }
                 //CARTAGO
-                elseif($this->Auth->user('sede_id')==3){
+                elseif($cobro->sede_id==3){
                     $payme = $this->Paymes->get(3);
                 }
                 //PUNTARENAS
-                elseif($this->Auth->user('sede_id')==4){
+                elseif($cobro->sede_id==4){
                     $payme = $this->Paymes->get(4);
                 }
                 $purchaseOperationNumber = str_pad($id, 9, "0", STR_PAD_LEFT);
@@ -113,11 +118,11 @@ class CobrosController extends AppController
                 //echo 'Respuesta: ' . $response;
                 //errorCode
                 //
-                //print_r($response);
+                print_r($response);
                 $jsonData = json_decode($response,true);
                 $errorCode= $jsonData['errorCode'];
                 
-                if($errorCode=='7003'){
+                if($errorCode=='7003' || $errorCode=='8005'){
 
                 }else{
                     if($jsonData['result']==1 || $jsonData['result']==2 || $jsonData['result']==4 || $jsonData['result']==6 || $jsonData['result']==9 || $jsonData['result']==10 || $jsonData['result']==11 || $jsonData['result']==13 || $jsonData['result']==14){
@@ -202,8 +207,6 @@ class CobrosController extends AppController
             'contain' => [],
         ]);
         if($cobro->status==1){
-
-            $purchaseOperationNumber = str_pad($id, 9, "0", STR_PAD_LEFT);
             if ($this->request->is(['patch', 'post', 'put'])) {
                 $cobro = $this->Cobros->patchEntity($cobro, $this->request->getData());
                 $cobro->fechapago=date('Y-m-d H:i:s');
@@ -243,11 +246,11 @@ class CobrosController extends AppController
                 $payme = $this->Paymes->get(4);
             }
 
-            $purchaseVerification = openssl_digest($payme->acquirerid . $payme->idcommerce . $purchaseOperationNumber . $cobro->pagar . $payme->purchasecurrencycode . $payme->pasarela, 'sha512');
+            
         }else{
             return $this->redirect(['action' => 'view',$id]);
         }
-        $this->set(compact('cobro', 'payme','purchaseVerification','purchaseOperationNumber'));
+        $this->set(compact('cobro', 'payme'));
     }
 
 
