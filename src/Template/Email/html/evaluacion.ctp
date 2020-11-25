@@ -61,7 +61,7 @@
                             <tr>
                                 <td align="center" mc:edit="text101" class="text_color_282828" style="line-height: 1;color: #282828; font-size: 18px; font-weight: 600; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                     <div class="editable-text">
-                                        <span class="text_container">Recupere su contrase&ntilde;a</span>
+                                        <span class="text_container">Evaluaci&oacute;n Docente</span>
                                     </div>
                                 </td>
                             </tr><!-- END email heading -->
@@ -73,7 +73,7 @@
                             <tr>
                                 <td class="editable-img" align="center">
                                     <a href="#">
-                                        <img editable="true" mc:edit="image105" src="https://usantalucia.ac.cr/mail_usl/img/icons/circle-icon-locked.png" style="display:block; line-height:0; font-size:0; border:0;" border="0" alt="image" />
+                                        <img editable="true" mc:edit="image105" src="https://usantalucia.ac.cr/mail_usl/img/icons/icon-ebook.png" style="display:block; line-height:0; font-size:0; border:0;" border="0" alt="image" />
                                     </a>
                                 </td>
                             </tr><!-- END main-icon -->
@@ -85,14 +85,29 @@
                             <tr>
                                 <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #605d5d; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                     <div class="editable-text">
-                                        <span class="text_container">Usted ha iniciado un proceso de recuperaci&oacute;n de contrase&ntilde;a en nuestro portal acad&eacute;mico. Para recuperar su contrase&ntilde;a haga clic en el siguiente bot&oacute;n o copie y pegue el enlace en su navegador:</span>
+                                        <span class="text_container">Estimado(a) estudiante, tiene una <b>evaluaci&oacute;n docente </b> pendiente del cuatrimestre <?php echo $cuatri; ?> por contestar. Con el prop&oacute;sito de evaluar el desempe&ntilde;o de nuestros docentes le solicitamos ingresar a nuestro Portal Acad&eacute;mico en el siguiente <a href="https://portal.usl.ac.cr/" target="_blank">enlace</a>.</span>
                                     </div>
                                 </td>
                             </tr><!-- END email details -->
 
                             <!-- horizontal gap -->
                             <tr><td height="35"></td></tr>
-                            
+                            <!-- email details -->
+                            <tr>
+                                <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #605d5d; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                                    <div class="editable-text">
+                                        <b>Carrera: <?php echo $carrera; ?></b>
+                                        <br>
+                                        <b>Materia: <?php echo $materia ?></b>
+                                        <br>
+                                        <b>Docente: <?php echo $docente; ?></b>
+                                        <br>
+                                        <b>Horario: <?php echo $horario; ?></b>
+                                        <br>
+                                        <br>
+                                    </div>
+                                </td>
+                            </tr><!-- END email details -->
                             <!-- buttons -->
                             <tr>
                                 <td align="center">
@@ -106,7 +121,7 @@
                                                         <td mc:edit="text104" align="center" valign="middle" style="font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                                             <div class="editable-text">
                                                                 <span class="text_container">
-                                                                    <a href="<?php echo $url;?>" class="text_color_ffffff" style="text-decoration: none; color: #ffffff;" target="_blank">Recuperar</a>
+                                                                    <a href="https://portal.usl.ac.cr/" class="text_color_ffffff" style="text-decoration: none; color: #ffffff;" target="_blank">Entrar al Portal</a>
                                                                 </span>
                                                             </div>
                                                         </td>
@@ -119,17 +134,9 @@
                             </tr><!-- END buttons -->
                             <!-- email details -->
                             <tr>
-                                <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #605d5d; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
-                                    <div class="editable-text">
-                                        <span class="text_container">Enlace: <a href="<?php echo $url; ?>"><?php echo $url; ?></a></span>
-                                    </div>
-                                </td>
-                            </tr><!-- END email details -->
-                            <!-- email details -->
-                            <tr>
                                 <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #605d5d; font-size: 12px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                     <div class="editable-text">
-                                        <span class="text_container"><br>Si usted no ha solicitado recuperar su contrase&ntilde;a, es posible que otro usuario haya ingresado su direcci&oacute;n de correo electr&oacute;nico por error mientras intenta recuperar una contrase&ntilde;a. Si usted no hizo la solicitud, haga caso omiso de este correo.</span>
+                                        <span class="text_container"><br>Si usted no tiene acceso al Portal Acad&eacute;mico, le sugerimos recuperar su contrase&ntilde;a o comunicarse con el equipo de soporte de su sede.</span>
                                     </div>
                                 </td>
                             </tr><!-- END email details -->

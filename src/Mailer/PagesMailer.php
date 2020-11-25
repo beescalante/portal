@@ -38,6 +38,18 @@ class PagesMailer extends Mailer
             ->setTemplate('solicitud')
             ->setLayout('pages');
     }
+
+    public function evaluacion($email,$cuatri,$carrera,$materia,$docente,$horario)
+    {
+        $this->setTo($email)
+        ->setProfile('usl')
+        ->setEmailFormat('html')
+        ->setViewVars(['email'=>$email,'cuatri'=>$cuatri,'carrera'=>$carrera,'materia'=>$materia,'docente'=>$docente,'horario'=>$horario])
+        ->setSubject(sprintf('Evaluación Docente Pendiente: '.$cuatri.' - '.$materia))
+        ->viewBuilder()
+            ->setTemplate('evaluacion')
+            ->setLayout('pages');
+    }
    
 
     
