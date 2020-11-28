@@ -69,7 +69,7 @@ class PagesShell extends Shell
                 elseif($cobro->sede_id==4){
                     $payme = $this->Paymes->get(4);
                 }
-                $purchaseOperationNumber = str_pad($id, 9, "0", STR_PAD_LEFT);
+                $purchaseOperationNumber = str_pad($cobro->id, 9, "0", STR_PAD_LEFT);
                 $purchaseVerification = openssl_digest($payme->acquirerid . $payme->idcommerce . $purchaseOperationNumber . $payme->pasarela, 'sha512');
 
                 $url = 'https://integracion.alignetsac.com/VPOS2/rest/operationAcquirer/consulte';

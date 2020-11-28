@@ -1,4 +1,4 @@
-<script type="text/javascript" src="https://integracion.alignetsac.com/VPOS2/js/modalcomercio.js" ></script>
+<script type="text/javascript" src="https://vpayment.verifika.com/VPOS2/js/modalcomercio.js" ></script>
 <div class="login login-4 login-signin-on d-flex flex-row-fluid" id="kt_login">
     <div class="d-flex flex-center flex-row-fluid bgi-size-cover bgi-position-top bgi-no-repeat" style="background-image: url(/img/bg-3.jpg);">
         <div class="login-form text-center p-7 position-relative overflow-hidden">
@@ -81,7 +81,7 @@
                             <?php echo $this->Form->control('shippingstate',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba la Provincia','name'=>'shippingState','autocomplete'=>'off']); ?>
                     </div>
                     <input type="hidden" name="purchaseVerification" value="<?php echo $purchaseVerification; ?>" />
-                    <input type="button" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4" onclick="javascript:AlignetVPOS2.openModal('https://integracion.alignetsac.com/')" value="Pagar">
+                    <input type="button" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4" onclick="javascript:AlignetVPOS2.openModal('','[3]')" value="Pagar">
                 <?= $this->Form->end() ?>
                 <div class="mt-10">
                     <span class="opacity-70 mr-4 text-muted">
