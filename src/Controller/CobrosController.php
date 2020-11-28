@@ -79,12 +79,6 @@ class CobrosController extends AppController
                 elseif($cobro->sede_id==1 && $cobro->diffe==2){
                     $payme = $this->Paymes->get(1);
                 }
-                elseif($cobro->sede_id==5){
-                    $payme = $this->Paymes->get(1);
-                }
-                elseif($cobro->sede_id==7){
-                    $payme = $this->Paymes->get(1);
-                }
                 //CARTAGO
                 elseif($cobro->sede_id==3){
                     $payme = $this->Paymes->get(3);
@@ -96,7 +90,7 @@ class CobrosController extends AppController
                 $purchaseOperationNumber = str_pad($id, 9, "0", STR_PAD_LEFT);
                 $purchaseVerification = openssl_digest($payme->acquirerid . $payme->idcommerce . $purchaseOperationNumber . $payme->pasarela, 'sha512');
 
-                $url = 'https://integracion.alignetsac.com/VPOS2/rest/operationAcquirer/consulte';
+                $url = 'https://vpayment.verifika.com/VPOS2/rest/operationAcquirer/consulte';
 
                 $dataRest = '{"idAcquirer":"'.$payme->acquirerid.'","idCommerce":"'.$payme->idcommerce.'","operationNumber":"'.$purchaseOperationNumber.'","purchaseVerification":"'.$purchaseVerification.'"}';
 
@@ -248,8 +242,6 @@ class CobrosController extends AppController
             elseif($cobro->sede_id==4){
                 $payme = $this->Paymes->get(4);
             }
-
-            
         }else{
             return $this->redirect(['action' => 'view',$id]);
         }

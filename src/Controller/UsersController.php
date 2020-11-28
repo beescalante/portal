@@ -98,7 +98,7 @@ class UsersController extends AppController
 
             //evaluaciones
             $this->loadModel('Evaluaciones');
-            $evaluaciones1=$this->Evaluaciones->find('all',['conditions'=>['Evaluaciones.email'=>$this->Auth->user('email')]]);
+            $evaluaciones1=$this->Evaluaciones->find('all',['conditions'=>['Evaluaciones.email'=>$this->Auth->user('email'),'Evaluaciones.status'=>0]]);
             
             $this->set(compact('pagos','evaluaciones1'));
         }
@@ -326,49 +326,48 @@ class UsersController extends AppController
         if ($passkey) {
             $cobros = $this->Cobros->find('all', ['conditions' => ['passkey' => $passkey, 'timeout >' => time(),'status'=>1],'limit'=>1]);
             if($cobros->count()>0){
-                foreach ($cobros as $cobrod) {
-                    $cobro = $this->Cobros->get($cobrod->id);
-                }
-                $purchaseOperationNumber = str_pad($cobro->id, 9, "0", STR_PAD_LEFT);
-                if ($this->request->is(['patch', 'post', 'put'])) {
-                    $cobro = $this->Cobros->patchEntity($cobro, $this->request->getData());
-                    $cobro->fechapago=date('Y-m-d H:i:s');
-                    $cobro->status=3;
-                    if ($this->Cobros->save($cobro)) {
-                        $this->Flash->success(__('El pago #'.$cobro->id.' se ha registrado exitosamente.'));
+                foreach ($cobros as $cobro) {
 
-                        return $this->redirect(['action' => 'index']);
+                    if($cobro->status==1){
+                        if ($this->request->is(['patch', 'post', 'put'])) {
+                            $cobro = $this->Cobros->patchEntity($cobro, $this->request->getData());
+                            $cobro->fechapago=date('Y-m-d H:i:s');
+                            $cobro->status=3;
+                            $cobro->passkey=0;
+                            if ($this->Cobros->save($cobro)) {
+                            }
+                        }
+
+                        $this->loadModel('Paymes');
+                        //SEDES
+                        if($cobro->sede_id==1 && $cobro->diffe==1){
+                            $payme = $this->Paymes->get(2);
+                        }
+                        //MARIROCA
+                        elseif($cobro->sede_id==1 && $cobro->diffe==2){
+                            $payme = $this->Paymes->get(1);
+                        }
+                        //CARTAGO
+                        elseif($cobro->sede_id==3){
+                            $payme = $this->Paymes->get(3);
+                        }
+                        //PUNTARENAS
+                        elseif($cobro->sede_id==4){
+                            $payme = $this->Paymes->get(4);
+                        }
+                    }else{
+                        $this->redirect(['action' => 'login']);
                     }
-                    $this->Flash->error(__('El pago #'.$cobro->id.' no se ha registrado. Por favor, intente más tarde.'));
                 }
-                $this->loadModel('Paymes');
-                //SEDES
-                if($cobro->sede_id==1 && $cobro->diffe==1){
-                    $payme = $this->Paymes->get(1);
-                }
-                //MARIROCA
-                elseif($cobro->sede_id==1 && $cobro->diffe==2){
-                    $payme = $this->Paymes->get(2);
-                }
-                //CARTAGO
-                elseif($cobro->sede_id==3){
-                    $payme = $this->Paymes->get(3);
-                }
-                //PUNTARENAS
-                elseif($cobro->sede_id==4){
-                    $payme = $this->Paymes->get(4);
-                }
-
-                $purchaseVerification = openssl_digest($payme->acquirerid . $payme->idcommerce . $purchaseOperationNumber . $cobro->pagar . $payme->purchasecurrencycode . $payme->pasarela, 'sha512');
             }else{
-                $this->Flash->error('Enlace inválido o expirado. Por favor, comuníquese con el personal de plataforma plataforma de su sede.');
+                $this->Flash->error('Enlace inválido o vencido. Por favor, comuníquese con el personal de plataforma plataforma de su sede.');
                 $this->redirect(['action' => 'login']);
             }
             
         }else {
             $this->redirect('/');
         }
-        $this->set(compact('cobro', 'payme','purchaseVerification','purchaseOperationNumber'));
+        $this->set(compact('cobro', 'payme'));
 
     }
 

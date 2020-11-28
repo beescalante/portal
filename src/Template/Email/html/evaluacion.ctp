@@ -96,13 +96,13 @@
                             <tr>
                                 <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #605d5d; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                     <div class="editable-text">
-                                        <b>Carrera: <?php echo $carrera; ?></b>
+                                        <b>Carrera: </b><?php echo $carrera; ?>
                                         <br>
-                                        <b>Materia: <?php echo $materia ?></b>
+                                        <b>Materia: </b><?php echo $materia ?>
                                         <br>
-                                        <b>Docente: <?php echo $docente; ?></b>
+                                        <b>Docente: </b><?php echo $docente; ?>
                                         <br>
-                                        <b>Horario: <?php echo $horario; ?></b>
+                                        <b>Horario: </b><?php echo $horario; ?>
                                         <br>
                                         <br>
                                     </div>

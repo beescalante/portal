@@ -1,4 +1,4 @@
-<script type="text/javascript" src="https://integracion.alignetsac.com/VPOS2/js/modalcomercio.js" ></script>
+<script type="text/javascript" src="https://vpayment.verifika.com/VPOS2/js/modalcomercio.js" ></script>
 <!-- begin::Subheader -->
 <div class="subheader py-2 py-lg-6  subheader-transparent " id="kt_subheader">
     <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -171,7 +171,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <input type="button" class="btn btn-primary mr-2" onclick="javascript:AlignetVPOS2.openModal('https://integracion.alignetsac.com/')" value="Pagar">
+                            <input type="button" class="btn btn-primary mr-2" onclick="javascript:AlignetVPOS2.openModal('','[3]')" value="Pagar">
                             <?= $this->Html->link(('Cancelar'),['action' => 'index'],['class' => 'btn btn-secondary']) ?>
                         </div>
                     <?= $this->Form->end() ?>
