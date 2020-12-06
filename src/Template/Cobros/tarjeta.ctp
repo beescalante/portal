@@ -124,13 +124,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nombre del Tarjetahabiente</label>
-                                        <?php echo $this->Form->control('shippingfirstname',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Nombre','name'=>'shippingFirstName','autocomplete'=>'off']); ?>
+                                        <?php echo $this->Form->control('shippingfirstname',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Nombre','name'=>'shippingFirstName','autocomplete'=>'off','value'=>$student->nombre]); ?>
+                                        <div class="invalid-feedback" id="alert1"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Apellido del Tarjetahabiente:</label>
-                                        <?php echo $this->Form->control('shippinglastname',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Apellido','name'=>'shippingLastName','autocomplete'=>'off']); ?>
+                                        <?php echo $this->Form->control('shippinglastname',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Apellido','name'=>'shippingLastName','autocomplete'=>'off','value'=>$student->apellido1]); ?>
+                                        <div class="invalid-feedback" id="alert2"></div>
                                     </div>
                                 </div>
                             </div>
@@ -138,13 +140,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Correo del Tarjetahabiente:</label>
-                                        <?php echo $this->Form->control('shippingemail',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Correo','name'=>'shippingEmail','autocomplete'=>'off']); ?>
+                                        <?php echo $this->Form->control('shippingemail',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Correo','name'=>'shippingEmail','autocomplete'=>'off','value'=>$student->emailp]); ?>
+                                        <div class="invalid-feedback" id="alert3"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dirección del Tarjetahabiente:</label>
                                         <?php echo $this->Form->control('shippingaddress',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba la Dirección','name'=>'shippingAddress','autocomplete'=>'off']); ?>
+                                        <div class="invalid-feedback" id="alert4"></div>
                                     </div>
                                 </div>
                             </div>
@@ -153,25 +157,41 @@
                                     <div class="form-group">
                                         <label>Código Postal</label>
                                         <?php echo $this->Form->control('shippingzip',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba el Código','name'=>'shippingZIP','autocomplete'=>'off']); ?>
+                                        <small class="invalid-feedback" id="alert5"></small>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Ciudad:</label>
                                         <?php echo $this->Form->control('shippingcity',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba la Ciudad','name'=>'shippingCity','autocomplete'=>'off']); ?>
+                                        <div class="invalid-feedback" id="alert6"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Provincia:</label>
                                         <?php echo $this->Form->control('shippingstate',['label'=>false,'class'=>'form-control form-control-solid','type'=>'text','required'=>'required','placeholder'=>'Escriba la Provincia','name'=>'shippingState','autocomplete'=>'off']); ?>
+                                        <div class="invalid-feedback" id="alert7"></div>
                                     </div>
                                 </div>
-                                <input type="hidden" name="purchaseVerification" value="<?php echo $purchaseVerification; ?>" />
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group validated">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="condiciones" required="required" id="condiciones">
+                                            <span></span>
+                                            <a href="#" data-toggle="modal" data-target="#modalCond"> Acepto los Términos y Condiciones</a>
+                                        </label>
+                                        <div class="invalid-feedback" id="alert8"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <input type="hidden" name="purchaseVerification" value="<?php echo $purchaseVerification; ?>" />
                         <div class="card-footer">
-                            <input type="button" class="btn btn-primary mr-2" onclick="javascript:AlignetVPOS2.openModal('','[3]')" value="Pagar">
+                            <input type="button" class="btn btn-primary mr-2" onclick="verificar()" value="Pagar" id="sub">
+                            <input type="hidden" class="btn btn-primary mr-2" onclick="javascript:AlignetVPOS2.openModal('','[3]')" id="pagar">
                             <?= $this->Html->link(('Cancelar'),['action' => 'index'],['class' => 'btn btn-secondary']) ?>
                         </div>
                     <?= $this->Form->end() ?>
@@ -181,3 +201,196 @@
         </div>
     </div>
 </div>
+<!-- Modal-->
+<div class="modal fade" id="modalCond" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Términos y Condiciones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 300px;">
+                <?= $this->element('terminos') ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#shippingfirstname').on('keyup change', function (e) {
+        e.preventDefault();
+        var nombre= $('#shippingfirstname').val();
+        if(nombre == null || nombre == ""){
+            $('#shippingfirstname').addClass('is-invalid');
+            $('#alert1').text('Este campo es requerido');
+            $('#sub').prop("disabled", true);
+        }else{
+            $('#shippingfirstname').removeClass('is-invalid');
+            $('#alert1').text('');
+            $('#sub').prop("disabled", false);
+        }
+    });
+
+    $('#shippinglastname').on('keyup change', function (e) {
+        e.preventDefault();
+        var apellido= $('#shippinglastname').val();
+        if(apellido == null || apellido == ""){
+            $('#shippinglastname').addClass('is-invalid');
+            $('#alert2').text('Este campo es requerido');
+            $('#sub').prop("disabled", true);
+        }else{
+            $('#shippinglastname').removeClass('is-invalid');
+            $('#alert2').text('');
+            $('#sub').prop("disabled", false);
+        }
+    });
+
+    $('#shippingemail').on('keyup change', function (e) {
+        e.preventDefault();
+        var email= $('#shippingemail').val();
+        if(email == null || email == ""){
+            $('#shippingemail').addClass('is-invalid');
+            $('#alert3').text('Este campo es requerido');
+            $('#sub').prop("disabled", true);
+        }else{
+            $('#shippingemail').removeClass('is-invalid');
+            $('#alert3').text('');
+            $('#sub').prop("disabled", false);
+        }
+    });
+
+    $('#shippingaddress').on('keyup change', function (e) {
+        e.preventDefault();
+        var direccion= $('#shippingaddress').val();
+        if(direccion == null || direccion == ""){
+            $('#shippingaddress').addClass('is-invalid');
+            $('#alert4').text('Este campo es requerido');
+            $('#sub').prop("disabled", true);
+        }else{
+            $('#shippingaddress').removeClass('is-invalid');
+            $('#alert4').text('');
+            $('#sub').prop("disabled", false);
+        }
+    });
+
+    $('#shippingzip').on('keyup change', function (e) {
+        e.preventDefault();
+        var zip= $('#shippingzip').val();
+        if(zip == null || zip == ""){
+            $('#shippingzip').addClass('is-invalid');
+            $('#alert5').text('Este campo es requerido');
+            $('#sub').prop("disabled", true);
+        }else{
+            $('#shippingzip').removeClass('is-invalid');
+            $('#alert5').text('');
+            $('#sub').prop("disabled", false);
+        }
+    });
+
+    $('#shippingcity').on('keyup change', function (e) {
+        e.preventDefault();
+        var ciudad= $('#shippingcity').val();
+        if(ciudad == null || ciudad == ""){
+            $('#shippingcity').addClass('is-invalid');
+            $('#alert6').text('Este campo es requerido');
+            $('#sub').prop("disabled", true);
+        }else{
+            $('#shippingcity').removeClass('is-invalid');
+            $('#alert6').text('');
+            $('#sub').prop("disabled", false);
+        }
+    });
+
+    $('#shippingstate').on('keyup change', function (e) {
+        e.preventDefault();
+        var provincia= $('#shippingstate').val();
+        if(provincia == null || provincia == ""){
+            $('#shippingstate').addClass('is-invalid');
+            $('#alert7').text('Este campo es requerido');
+            $('#sub').prop("disabled", true);
+        }else{
+            $('#shippingstate').removeClass('is-invalid');
+            $('#alert7').text('');
+            $('#sub').prop("disabled", false);
+        }
+    });
+
+    function verificar(){
+        var nombre= $('#shippingfirstname').val();
+        if(nombre == null || nombre == ""){
+            $('#shippingfirstname').addClass('is-invalid');
+            $('#alert1').text('Este campo es requerido');;
+        }else{
+            $('#shippingfirstname').removeClass('is-invalid');
+            $('#alert1').text('');
+        }
+        var apellido= $('#shippinglastname').val();
+        if(apellido == null || apellido == ""){
+            $('#shippinglastname').addClass('is-invalid');
+            $('#alert2').text('Este campo es requerido');
+        }else{
+            $('#shippinglastname').removeClass('is-invalid');
+            $('#alert2').text('');
+        }
+
+        var email= $('#shippingemail').val();
+        if(email == null || email == ""){
+            $('#shippingemail').addClass('is-invalid');
+            $('#alert3').text('Este campo es requerido');
+        }else{
+            $('#shippingemail').removeClass('is-invalid');
+            $('#alert3').text('');
+        }
+
+        var direccion= $('#shippingaddress').val();
+        if(direccion == null || direccion == ""){
+            $('#shippingaddress').addClass('is-invalid');
+            $('#alert4').text('Este campo es requerido');
+        }else{
+            $('#shippingaddress').removeClass('is-invalid');
+            $('#alert4').text('');
+        }
+
+        var zip= $('#shippingzip').val();
+        if(zip == null || zip == ""){
+            $('#shippingzip').addClass('is-invalid');
+            $('#alert5').text('Este campo es requerido');
+        }else{
+            $('#shippingzip').removeClass('is-invalid');
+            $('#alert5').text('');
+        }
+
+        var ciudad= $('#shippingcity').val();
+        if(ciudad == null || ciudad == ""){
+            $('#shippingcity').addClass('is-invalid');
+            $('#alert6').text('Este campo es requerido');
+        }else{
+            $('#shippingcity').removeClass('is-invalid');
+            $('#alert6').text('');
+        }
+
+        var provincia= $('#shippingstate').val();
+        if(provincia == null || provincia == ""){
+            $('#shippingstate').addClass('is-invalid');
+            $('#alert7').text('Este campo es requerido');
+        }else{
+            $('#shippingstate').removeClass('is-invalid');
+            $('#alert7').text('');
+        }
+
+        var condiciones= $('#condiciones');
+        if ($(condiciones).is(':checked')) {
+             $('#condiciones').removeClass('is-invalid');
+            $('#alert8').text('');
+            document.getElementById("pagar").click();
+        } else {
+           $('#condiciones').addClass('is-invalid');
+            $('#alert8').text('Este campo es requerido');
+        }
+        
+    }
+</script>

@@ -222,7 +222,7 @@ class CobrosController extends AppController
 
                 $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$student->cedula,'status'=>1]]);
                 
-                $this->set(compact('pagos'));
+                $this->set(compact('pagos','student'));
             }
 
             $this->loadModel('Paymes');
