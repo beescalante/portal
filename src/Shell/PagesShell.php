@@ -27,8 +27,8 @@ class PagesShell extends Shell
         //busco las evaluaciones
         $evaluaciones=$this->Evaluaciones->find('all',['conditions'=>['Grupos.periodo'=>$periodo->evaluacion,'status'=>0,'enviado'=>0],'contain'=>['Grupos'=>['Materias','Docentes','Carreras']]]);
         foreach ($evaluaciones as $evaluacion) {
-            $users=$this->Users->find('all',['conditions'=>['Users.email'=>$evaluacion->email]]);
-            if($users->count()>0){
+            // $users=$this->Users->find('all',['conditions'=>['Users.email'=>$evaluacion->email]]);
+            // if($users->count()>0){
                 $email= $evaluacion->email;
                 $cuatri= $evaluacion->grupo->periodo;
                 $carrera= $evaluacion->grupo->carrera->nombre;
@@ -40,7 +40,7 @@ class PagesShell extends Shell
                 $evaluacione=$this->Evaluaciones->get($evaluacion->id);
                 $evaluacione->enviado=1;
                 $this->Evaluaciones->save($evaluacione);
-            }
+            // }
         }
         
     }
