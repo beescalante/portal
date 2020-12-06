@@ -136,7 +136,7 @@
                             <tr>
                                 <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #605d5d; font-size: 12px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                     <div class="editable-text">
-                                        <span class="text_container"><br>Si usted no tiene acceso al Portal Acad&eacute;mico, le sugerimos recuperar su contrase&ntilde;a o comunicarse con el equipo de soporte de su sede.</span>
+                                        <span class="text_container"><br>Si usted no tiene acceso al Portal Acad&eacute;mico, le sugerimos intentar recuperar su contrase&ntilde;a con su correo institucional si el portal le indica que su correo no se encuentra registrado por favor comun&iacute;quese con el equipo de soporte o personal d e plataforma de su sede.</span>
                                     </div>
                                 </td>
                             </tr><!-- END email details -->

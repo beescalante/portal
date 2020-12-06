@@ -27,8 +27,8 @@ class PagesShell extends Shell
         //busco las evaluaciones
         $evaluaciones=$this->Evaluaciones->find('all',['conditions'=>['Grupos.periodo'=>$periodo->evaluacion,'status'=>0,'enviado'=>0],'contain'=>['Grupos'=>['Materias','Docentes','Carreras']]]);
         foreach ($evaluaciones as $evaluacion) {
-            $users=$this->Users->find('all',['conditions'=>['Users.email'=>$evaluacion->email]]);
-            if($users->count()>0){
+            // $users=$this->Users->find('all',['conditions'=>['Users.email'=>$evaluacion->email]]);
+            // if($users->count()>0){
                 $email= $evaluacion->email;
                 $cuatri= $evaluacion->grupo->periodo;
                 $carrera= $evaluacion->grupo->carrera->nombre;
@@ -40,7 +40,7 @@ class PagesShell extends Shell
                 $evaluacione=$this->Evaluaciones->get($evaluacion->id);
                 $evaluacione->enviado=1;
                 $this->Evaluaciones->save($evaluacione);
-            }
+            // }
         }
         
     }
@@ -69,7 +69,7 @@ class PagesShell extends Shell
                 elseif($cobro->sede_id==4){
                     $payme = $this->Paymes->get(4);
                 }
-                $purchaseOperationNumber = str_pad($id, 9, "0", STR_PAD_LEFT);
+                $purchaseOperationNumber = str_pad($cobro->id, 9, "0", STR_PAD_LEFT);
                 $purchaseVerification = openssl_digest($payme->acquirerid . $payme->idcommerce . $purchaseOperationNumber . $payme->pasarela, 'sha512');
 
                 $url = 'https://integracion.alignetsac.com/VPOS2/rest/operationAcquirer/consulte';
