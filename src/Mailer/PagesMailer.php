@@ -50,6 +50,18 @@ class PagesMailer extends Mailer
             ->setTemplate('evaluacion')
             ->setLayout('pages');
     }
+
+    public function recordatorios($email)
+    {
+        $this->setTo($email)
+        ->setProfile('usl')
+        ->setEmailFormat('html')
+        ->setViewVars(['email'=>$email])
+        ->setSubject(sprintf('Recordatorio: Evaluaciones de Docente Pendiente'))
+        ->viewBuilder()
+            ->setTemplate('recordatorios')
+            ->setLayout('pages');
+    }
    
 
     

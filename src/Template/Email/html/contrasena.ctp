@@ -150,7 +150,7 @@
                 <tr>
                     <td align="center" mc:edit="text105" class="text_color_c6c6c6" style="line-height: 1;color: #605d5d; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                         <div class="editable-text">
-                            <span class="text_container">&copy; 2020 Universidad Santa Luc&iacute;a. Todos los derechos.</span>
+                            <span class="text_container">&copy; 2021 Universidad Santa Luc&iacute;a. Todos los derechos.</span>
                         </div>
                     </td>
                 </tr>

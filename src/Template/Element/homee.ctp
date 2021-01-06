@@ -73,7 +73,7 @@
 											</svg>
 											<!--end::Svg Icon-->
 										</span>                        
-										<span class="text-muted font-weight-bold">7-10-2020</span>
+										<span class="text-muted font-weight-bold">5-01-2021</span>
 	                    			</div>
 	                    			<div class="d-flex align-items-center">
 	                        			<span class="svg-icon svg-icon-md svg-icon-primary pr-1">
@@ -98,12 +98,12 @@
 	        			<div class="pt-3">
 	           				<!--begin::Text-->
 				            <p class="text-dark-75 font-size-lg font-weight-normal pt-5 mb-2">
-				                La Universidad Santa Lucía les invita a participar contestando la siguiente encuesta. Con la finalidad de evaluar la calidad del servicio y la percepción que tienen nuestros estudiantes sobre la educación superior en Costa Rica:
+				                ¡Ahora puedes visitar nuestras sedes de forma segura!
 				            </p>
 	            			<!--end::Text-->
 				            <!--begin::Description-->
 				            <p class="text-dark-75 font-size-lg font-weight-normal pt-5">
-				                Ingrese al siguiente enlace para participar: <a href="https://qfreeaccountssjc1.az1.qualtrics.com/jfe/form/SV_6o2E2GvvmfrPu5f" target="_blank">Ir a la encuesta ahora</a>
+				                Conoce nuestro protocolo de atención ante el COVID-19, aprobado por CONESUP, en el <a href="https://usl.ac.cr/PROTOCOLO_VISITA_COVID19.pdf" target="_blank"> siguiente enlace. </a>
 				                <br>
 				                <span class="pt-7 d-block"><b>Universidad Santa Lucía</b></span>
 				            </p>

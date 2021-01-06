@@ -61,7 +61,7 @@
                             <tr>
                                 <td align="center" mc:edit="text101" class="text_color_282828" style="line-height: 1;color: #282828; font-size: 18px; font-weight: 600; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                     <div class="editable-text">
-                                        <span class="text_container">Evaluaci&oacute;n Docente</span>
+                                        <span class="text_container">Recordatorio</span>
                                     </div>
                                 </td>
                             </tr><!-- END email heading -->
@@ -85,7 +85,7 @@
                             <tr>
                                 <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #605d5d; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
                                     <div class="editable-text">
-                                        <span class="text_container">Estimado(a) estudiante, tiene una <b>evaluaci&oacute;n docente </b> pendiente del cuatrimestre <?php echo $cuatri; ?> por contestar. Con el prop&oacute;sito de evaluar el desempe&ntilde;o de nuestros docentes le solicitamos ingresar a nuestro Portal Acad&eacute;mico en el siguiente <a href="https://portal.usl.ac.cr/" target="_blank">enlace</a>.</span>
+                                        <span class="text_container">Estimado(a) estudiante, hemos notado que a&uacute;n no ha evaluado a los docentes que le impartieron clases recientemente. En la Universidad Santa Luc&iacute;a nos aseguramos de que cada uno de nuestros estudiantes reciba una educaci&oacute;n de alta calidad, de la mano de los mejores profesionales, es por eso, que agradecemos su apoyo en evaluar el desempe&ntilde;o de nuestros docentes durante cada cuatrimestre. Le invitamos una vez m&aacute;s a que entre a nuestro Portal Acad&eacute;mico en el siguiente <a href="https://portal.usl.ac.cr/" target="_blank">enlace</a> y contestar cada una de las evaluaciones.</span>
                                     </div>
                                 </td>
                             </tr><!-- END email details -->
@@ -93,21 +93,6 @@
                             <!-- horizontal gap -->
                             <tr><td height="35"></td></tr>
                             <!-- email details -->
-                            <tr>
-                                <td align="center" mc:edit="text102" class="text_color_c6c6c6" style="line-height: 1.8;color: #605d5d; font-size: 14px; font-weight: 400; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
-                                    <div class="editable-text">
-                                        <b>Carrera: </b><?php echo $carrera; ?>
-                                        <br>
-                                        <b>Materia: </b><?php echo $materia ?>
-                                        <br>
-                                        <b>Docente: </b><?php echo $docente; ?>
-                                        <br>
-                                        <b>Horario: </b><?php echo $horario; ?>
-                                        <br>
-                                        <br>
-                                    </div>
-                                </td>
-                            </tr><!-- END email details -->
                             <!-- buttons -->
                             <tr>
                                 <td align="center">

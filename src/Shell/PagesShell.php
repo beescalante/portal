@@ -134,5 +134,21 @@ class PagesShell extends Shell
             }
         }
     }
+    
+
+    //recordatorio de evaluaciones una vez al mes
+    public function recordatorios()
+    {
+        $this->loadModel('Evaluaciones');
+        $evaluaciones=$this->Evaluaciones->find()->select(['id','email'])->distinct(['email'])->where(['status'=>0]);
+        if($evaluaciones->count()>0){
+            foreach ($evaluaciones as $evaluacion) {
+                $email=$evaluacion->email;
+                $this->getMailer('Pages')->send('recordatorios', [$email]);
+            }
+            // $email="bescalante822@gmail.com";
+            // $this->getMailer('Pages')->send('recordatorios', [$email]);
+        }
+    }
 
 }

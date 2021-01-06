@@ -56,7 +56,7 @@
                     <h3 class="card-label">Evaluaciones pendientes</h3>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body table-responsive">
                 <!--begin: Datatable-->
                 <table class="table table-bordered table-hover table-checkable dataTable no-footer dtr-inline" id="kt_datatable" style="margin-top: 13px !important">
                     <thead>

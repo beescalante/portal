@@ -62,7 +62,7 @@
                                                                                 <p style="font-size:14px;color:#16870A">
                                                                                     <b>Enviado por <span class="il">Universidad Santa Luc&iacute;a</span>. <small style="color:#000000"></small></b>
                                                                                 </p>
-                                                                                <p style="font-size:12px;color:#555555">@2020 <span class="il">Universidad Santa Luc&iacute;a</span>
+                                                                                <p style="font-size:12px;color:#555555">@2021 <span class="il">Universidad Santa Luc&iacute;a</span>
                                                                                 </p>
                                                                             </td>
                                                                         </tr>
