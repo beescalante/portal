@@ -13,13 +13,13 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'Portal Académico USL';
+$cakeDescription = 'USL - Folios';
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8"/>
-    <meta name="description" content="Portal Académico de la Universidad Santa Lucía"/>
+    <meta name="description" content="Universidad Santa Lucía - Folios"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>
         <?= $cakeDescription ?>

@@ -19,24 +19,24 @@ class UsersController extends AppController
     public function beforeFilter(\Cake\Event\Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['pedircontrasena','recuperarcontrasena','login','logout','linkpago']);
+        $this->Auth->allow(['pedircontrasena','recuperarcontrasena','login','logout']);
     }
 
     /*PERMISOLOGIA DE USUARIOS*/
     public function isAuthorized($user){
         //estudiante rol=3
-        if(isset($user['role_id']) and $user['role_id'] === 3)
+        if(isset($user['role_id']) and $user['role_id'] === 2)
         {
-            if(in_array($this->request->action, ['login','logout','home','cambiarcontrasena','miperfil','pedircontrasena','recuperarcontrasena']))
+            if(in_array($this->request->action, ['login','logout','home','cambiarcontrasena','pedircontrasena','recuperarcontrasena']))
             {
                 return true;
             }else{
                 $this->Flash->error(__('Disculpe, usted no está autorizado para realizar esta acción.'));
             }
         }
-        if(isset($user['role_id']) and $user['role_id'] === 2)
+        if(isset($user['role_id']) and $user['role_id'] === 3)
         {
-            if(in_array($this->request->action, ['login','logout','home','cambiarcontrasenad','miperfild','pedircontrasena','recuperarcontrasena']))
+            if(in_array($this->request->action, ['login','logout','home','cambiarcontrasena','pedircontrasena','recuperarcontrasena']))
             {
                 return true;
             }else{
@@ -89,19 +89,7 @@ class UsersController extends AppController
      */
     public function home()
     {
-        if($this->Auth->user('role_id')==3){
-            $this->loadModel('Estudiantes');
-            $student=$this->Estudiantes->get($this->Auth->user('estudiante_id'));
-
-            $this->loadModel('Cobros');
-            $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$student->cedula,'status'=>1]]);
-
-            //evaluaciones
-            $this->loadModel('Evaluaciones');
-            $evaluaciones1=$this->Evaluaciones->find('all',['conditions'=>['Evaluaciones.email'=>$this->Auth->user('email'),'Evaluaciones.status'=>0]]);
-            
-            $this->set(compact('pagos','evaluaciones1'));
-        }
+        
     }
 
     /**
@@ -144,104 +132,6 @@ class UsersController extends AppController
         
     }
 
-    /**
-     * Cambiar contraseña Docentes
-     *
-     */
-    public function cambiarcontrasenad()
-    {
-        $user =$this->Users->get($this->Auth->user('id')); 
-        if (!empty($this->request->getData())) { 
-            $user = $this->Users->patchEntity($user, [
-                'old_password'  => $this->request->getData(['old_password']),
-                'password'      => $this->request->getData(['password1']),
-                'password1'     => $this->request->getData(['password1']),
-                'password2'     => $this->request->getData(['password2'])
-                ],
-                ['validate' => 'password']
-            );
-            if ($this->Users->save($user)) { 
-                    
-                $this->Flash->success('Su contraseña ha sido modificada correctamente.'); 
-                    
-                $this->logout();
-            }else {    
-                $this->Flash->error('Su contraseña no pudo ser modificada. Por favor, intente más tarde.');   
-            } 
-        }
-        $this->set('user',$user);
-
-        if($this->Auth->user('role_id')==2){
-            $this->loadModel('Docentes');
-            $docente=$this->Docentes->get($this->Auth->user('docente_id'),['contain'=>['Sedes','Grados']]);
-        }
-        $this->set(compact('docente'));
-    }
-
-    /**
-     * Perfil Estudiante: Editar
-     *
-     */
-    public function miperfil()
-    {
-        if($this->Auth->user('role_id')==3){
-            $this->loadModel('Estudiantes');
-            $estudiante=$this->Estudiantes->get($this->Auth->user('estudiante_id'),['contain'=>['Sedes','Carreras','Nacionalidades']]);
-            $user=$this->Users->get($this->Auth->user('id'));
-            
-            if ($this->request->is(['patch', 'post', 'put'])) {
-                $estudiante = $this->Estudiantes->patchEntity($estudiante, $this->request->getData());
-                if ($this->Estudiantes->save($estudiante)) {
-                    $user->nombre=$estudiante->nombre;
-                    $user->apellido=$estudiante->apellido1;
-                    $this->Users->save($user);
-                    $this->Flash->success(__('Sus datos han sido modificados con éxito. El nombre en su usuario cambiará en su próximo inicio de sesión.'));
-
-                    return $this->redirect(['action' => 'miperfil']);
-                }
-                $this->Flash->error(__('Sus datos no han podido ser modificados. Por favor, intente más tarde.'));
-            }
-
-            
-            $this->loadModel('Cobros');
-            $pagos=$this->Cobros->find('all',['conditions'=>['cedula'=>$estudiante->cedula,'status'=>1]]);
-            
-            $this->set(compact('pagos'));
-
-        }
-        $this->set(compact('estudiante'));
-       
-    }
-
-    /**
-     * Perfil Docente: Editar
-     *
-     */
-    public function miperfild()
-    {
-        if($this->Auth->user('role_id')==2){
-            $this->loadModel('Docentes');
-            $docente=$this->Docentes->get($this->Auth->user('docente_id'),['contain'=>['Sedes','Grados']]);
-            $user=$this->Users->get($this->Auth->user('id'));
-            
-            if ($this->request->is(['patch', 'post', 'put'])) {
-                $docente = $this->Docentes->patchEntity($docente, $this->request->getData());
-                if ($this->Docentes->save($docente)) {
-                    $user->nombre=$docente->nombre;
-                    $user->apellido=$docente->apellido1;
-                    $this->Users->save($user);
-                    $this->Flash->success(__('Sus datos han sido modificados con éxito. El nombre en su usuario cambiará en su próximo inicio de sesión.'));
-
-                    return $this->redirect(['action' => 'miperfild']);
-                }
-                $this->Flash->error(__('Sus datos no han podido ser modificados. Por favor, intente más tarde.'));
-            }
-            $grados= $this->Docentes->Grados->find('list',['limit'=>250]);
-
-        }
-        $this->set(compact('docente','grados'));
-       
-    }
 
     /**
      * Envio de correo para recuperar contraseña
@@ -318,66 +208,4 @@ class UsersController extends AppController
         }
     }
 
-
-    //link de pago 
-    public function linkpago($passkey = null) {
-        $this->viewBuilder()->setLayout('externald');
-        $this->loadModel('Cobros');
-        if ($passkey) {
-            $cobros = $this->Cobros->find('all', ['conditions' => ['passkey' => $passkey, 'timeout >' => time(),'status'=>1],'limit'=>1]);
-            if($cobros->count()>0){
-                foreach ($cobros as $cobro) {
-
-                    if($cobro->status==1){
-                        if ($this->request->is(['patch', 'post', 'put'])) {
-                            $cobro = $this->Cobros->patchEntity($cobro, $this->request->getData());
-                            $cobro->fechapago=date('Y-m-d H:i:s');
-                            $cobro->status=3;
-                            $cobro->passkey=0;
-                            if ($this->Cobros->save($cobro)) {
-                            }
-                        }
-
-                        $this->loadModel('Paymes');
-                        //SEDES
-                        if($cobro->sede_id==1 && $cobro->diffe==1){
-                            $payme = $this->Paymes->get(2);
-                        }
-                        //MARIROCA
-                        elseif($cobro->sede_id==1 && $cobro->diffe==2){
-                            $payme = $this->Paymes->get(1);
-                        }
-                        //CARTAGO
-                        elseif($cobro->sede_id==3){
-                            $payme = $this->Paymes->get(3);
-                        }
-                        //PUNTARENAS
-                        elseif($cobro->sede_id==4){
-                            $payme = $this->Paymes->get(4);
-                        }
-                    }else{
-                        $this->redirect(['action' => 'login']);
-                    }
-                }
-            }else{
-                $this->Flash->error('Enlace inválido o vencido. Por favor, comuníquese con el personal de plataforma plataforma de su sede.');
-                $this->redirect(['action' => 'login']);
-            }
-            
-        }else {
-            $this->redirect('/');
-        }
-        $this->set(compact('cobro', 'payme'));
-
-    }
-
-    /**
-     * Inicio
-     *
-     */
-    public function condiciones()
-    {
-        
-       
-    }
 }

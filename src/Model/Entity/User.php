@@ -41,8 +41,7 @@ class User extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false,
-        'photo_dir'=>false
+        'id' => false
     ];
 
     /**

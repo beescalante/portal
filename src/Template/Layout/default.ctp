@@ -13,13 +13,13 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'Portal Académico USL';
+$cakeDescription = 'USL - Folios';
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8"/>
-    <meta name="description" content="Portal Académico de la Universidad Santa Lucía"/>
+    <meta name="description" content="Universidad Santa Lucía - Folios"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>
         <?= $cakeDescription ?>
@@ -52,11 +52,7 @@ $cakeDescription = 'Portal Académico USL';
     </div>
     <?= $this->element('loader') ?>
     <!-- end::Content -->
-    <?php if($current_user['role_id']==3): ?>
-        <?=$this->element('userpanel')?>
-    <?php else: ?>
-        <?=$this->element('userpaneld')?>
-    <?php endif; ?>
+    <?=$this->element('userpanel')?>
     <!-- begin::Scripts -->
     <script>
         var csrfToken = <?= json_encode($this->request->getParam('_csrfToken')) ?>;

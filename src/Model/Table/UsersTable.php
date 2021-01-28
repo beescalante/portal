@@ -50,16 +50,6 @@ class UsersTable extends Table
             'foreignKey' => 'sede_id',
             'joinType' => 'INNER',
         ]);
-
-        $this->belongsTo('Estudiantes', [
-            'foreignKey' => 'estudiante_id',
-            'joinType' => 'INNER',
-        ]);
-
-        $this->belongsTo('Docentes', [
-            'foreignKey' => 'docente_id',
-            'joinType' => 'INNER',
-        ]);
     }
 
     /**
@@ -92,12 +82,6 @@ class UsersTable extends Table
             ->notEmptyString('nombre');
 
         $validator
-            ->scalar('apellido')
-            ->maxLength('apellido', 255)
-            ->requirePresence('apellido', 'create')
-            ->notEmptyString('apellido');
-
-        $validator
             ->boolean('status')
             ->requirePresence('status', 'create')
             ->notEmptyString('status');
@@ -122,10 +106,6 @@ class UsersTable extends Table
             ->dateTime('timeout')
             ->allowEmptyDateTime('timeout');
 
-        $validator
-            ->boolean('firstime')
-            ->notEmptyString('firstime');
-
         return $validator;
     }
 
@@ -148,7 +128,7 @@ class UsersTable extends Table
     public function findAuth(\Cake\ORM\Query $query, array $options)
     {
         $query
-            ->select(['id','password','role_id','status','email','nombre','apellido','photo','photo_dir','firstime','sede_id','estudiante_id','docente_id'])
+            ->select(['id','password','role_id','status','email','nombre','sede_id'])
             ->where(['Users.status'=> 1]);
         return $query;
     }
