@@ -13,13 +13,13 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'Portal Académico USL';
+$cakeDescription = 'USL - Pagos';
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8"/>
-    <meta name="description" content="Portal Académico de la Universidad Santa Lucía"/>
+    <meta name="description" content="Universidad Santa Lucía"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>
         <?= $cakeDescription ?>
@@ -29,12 +29,12 @@ $cakeDescription = 'Portal Académico USL';
     <?= $this->Html->meta('icon') ?>
     <?= $this->fetch('meta') ?>
 
-    <?= $this->Html->css(['login-2','../plugins/global/plugins.bundle','../plugins/prismjs/prismjs.bundle','style.bundle']) ?>
+    <?= $this->Html->css(['login-4','../plugins/global/plugins.bundle','../plugins/prismjs/prismjs.bundle','style.bundle']) ?>
     <?= $this->fetch('css') ?>
 
     
 </head>
-<body  id="kt_body"  class="header-fixed header-mobile-fixed subheader-enabled page-loading"  >
+<body  id="kt_body"  class="header-fixed header-mobile-fixed subheader-enabled page-loading">
     <div class="d-flex flex-column flex-root">
         <?= $this->fetch('content') ?>
     </div>
